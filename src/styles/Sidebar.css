@@ -1,0 +1,96 @@
+nav{
+  position: fixed;
+  top: 50px; right: 30px;
+  width: 15%;
+  order: 5;
+  background-color: white;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5)
+}
+nav img{
+  border: solid 5px rgb(1, 160, 228);
+  padding: 10%;
+}
+
+nav #info{
+  margin-left: 6px;
+  margin-right: 6px
+}
+
+nav a{
+  text-decoration: none
+}
+
+nav ul{
+  list-style-type: none
+}
+
+nav ul li{
+  margin-bottom: 3px
+}
+
+nav ul li a{
+  color: #01a0e4
+}
+
+nav ul li a:hover{
+  text-decoration: underline
+}
+
+nav img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 5px
+}
+
+nav #social::before{
+  display: block;
+  content: '';
+  width: 5rem;
+  height: 1px;
+  margin: 23px auto;
+  background-color: #d5d5d5
+}
+
+nav #social::after{
+  display: block;
+  content: '';
+  width: 5rem;
+  height: 1px;
+  margin: 23px auto;
+  background-color: #d5d5d5
+}
+
+nav #social a{
+  color: #a2a2a2;
+  margin: 2px
+}
+
+nav #social #twitter:hover{
+  color: #1DA1F2
+}
+
+nav #social #rss:hover{
+  color: #f26522
+}
+
+nav #social #envelope:hover{
+  color: #5d5c5d
+}
+
+nav #social #instagram:hover{
+  color: #e1306c
+}
+
+nav #social #facebook:hover{
+  color: #3b5998
+}
+
+nav #social #youtube:hover{
+  color: red
+}
