@@ -1,4 +1,4 @@
-header {
+header{
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -6,7 +6,7 @@ header {
   margin-bottom: 160px;
 }
 
-header h1 {
+header h1{
   padding: 20px;
 }
 
@@ -16,7 +16,7 @@ header h1 a{
   font-size: 2.5rem;
 }
 
-header #desktop-nav #desktop-menu {
+header #desktop-nav #desktop-menu{
   list-style: none;
   margin: 0;
   margin-right: 180px;
@@ -24,16 +24,16 @@ header #desktop-nav #desktop-menu {
   overflow: hidden
 }
 
-header #desktop-nav #desktop-menu ul {
+header #desktop-nav #desktop-menu ul{
   display: inline
 }
 
-header #desktop-nav #desktop-menu li {
+header #desktop-nav #desktop-menu li{
   float: left;
   margin-right: 10px
 }
 
-header #desktop-nav #desktop-menu li a {
+header #desktop-nav #desktop-menu li a{
   display: block;
   text-decoration: none;
   color: white;
@@ -41,11 +41,11 @@ header #desktop-nav #desktop-menu li a {
   font-size: 1.5rem
 }
 
-header #desktop-nav #desktop-menu li a:hover {
+header #desktop-nav #desktop-menu li a:hover{
   text-decoration: underline
 }
 
-header #hammenuToggle {
+header #hammenuToggle{
   display: block;
   position: absolute;
   top: 15px;
@@ -55,17 +55,17 @@ header #hammenuToggle {
   user-select: none
 }
 
-header #hammenuToggle a {
+header #hammenuToggle a{
   text-decoration: none;
   color: #232323;
   transition: color 0.3s ease
 }
 
-header #hammenuToggle a:hover {
+header #hammenuToggle a:hover{
   color: #01a0e4
 }
 
-header #hammenuToggle input {
+header #hammenuToggle input{
   display: block;
   width: 40px;
   height: 32px;
@@ -78,7 +78,7 @@ header #hammenuToggle input {
   -webkit-touch-callout: none
 }
 
-header #hammenuToggle span {
+header #hammenuToggle span{
   display: block;
   width: 33px;
   height: 4px;
@@ -91,30 +91,30 @@ header #hammenuToggle span {
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),opacity 0.55s ease
 }
 
-header #hammenuToggle span:first-child {
+header #hammenuToggle span:first-child{
   transform-origin: 0% 0%
 }
 
-header #hammenuToggle span:nth-last-child(2) {
+header #hammenuToggle span:nth-last-child(2){
   transform-origin: 0% 100%
 }
 
-header #hammenuToggle input:checked~span {
+header #hammenuToggle input:checked~span{
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
   background: #232323
 }
 
-header #hammenuToggle input:checked~span:nth-last-child(3) {
+header #hammenuToggle input:checked~span:nth-last-child(3){
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2)
 }
 
-header #hammenuToggle input:checked~span:nth-last-child(2) {
+header #hammenuToggle input:checked~span:nth-last-child(2){
   transform: rotate(-45deg) translate(0, -1px)
 }
 
-header #menu {
+header #menu{
   position: fixed;
   width: 300px;
   margin: 10px 0 200px -135px;
@@ -130,51 +130,51 @@ header #menu {
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1)
 }
 
-header #menu li {
+header #menu li{
   padding: 10px 0;
   font-size: 22px
 }
 
-header #hammenuToggle input:checked~ul {
+header #hammenuToggle input:checked~ul{
   transform: none
 }
 
 
-@media screen and (max-width: 990px) {
-  #header #desktop-nav {
+@media screen and (max-width: 990px){
+  #header #desktop-nav{
       display:none
   }
 
-  #header h1 {
+  #header h1{
       padding: 10px;
       padding-top: 7px;
       max-width: 420px
   }
 
-  body {
+  body{
       background-size: 286%;
       background-position-x: 31%
   }
 }
 
-@media (min-width: 990px) {
-  #hammenuToggle {
+@media (min-width: 990px){
+  #hammenuToggle{
       display:none !important;
       visibility: hidden !important;
       position: absolute !important
   }
 }
-@media (max-width: 520px) {
-  #header h1 {
+@media (max-width: 520px){
+  #header h1{
       max-width:300px
   }
 }
-@media screen and (max-width: 350px) {
-  #header {
+@media screen and (max-width: 350px){
+  #header{
       margin-bottom:100px
   }
 
-  #header h1 {
+  #header h1{
       max-width: 200px
   }
 }

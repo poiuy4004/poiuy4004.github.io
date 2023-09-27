@@ -7,7 +7,7 @@ import "../styles/Header.css"
 
 function Header(){
   return(
-    <header>
+    <header id="header">
       <h1>
         <Link to="*">YongMin's Portfolio</Link>
       </h1>
