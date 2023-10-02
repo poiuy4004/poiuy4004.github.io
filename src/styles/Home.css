@@ -1,3 +1,13 @@
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main>h1{
+  margin: 3%;
+}
+
 #introduce1,#introduce2,#introduce3{
   min-width:11px;
   white-space: nowrap;
@@ -128,76 +138,26 @@
   }
 }
 
-main>p{
+main>div>p{
   text-align: center;
   margin-bottom: 2%;
   font-size: 180%;
 }
-
-.container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  /* space-evenly; */
-  align-items: flex-start
-}
-
-.container .content{
-  width: 64%;
-}
-.content .post{
-  -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
-  -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
-  min-height: 700px !important;
-  padding: 3%;
-  margin: 10% 0;
-  text-align: center;
-}
-
-.post h1{
-  margin-bottom: 10%;
-}
-
-.content .pagination a,.content .pagination span{
-  padding: 7px 18px;
-  border: 1px solid #eee;
-  margin-left: -2px;
-  margin-right: -2px;
-  background-color: #ffffff;
-  display: inline-block;
-  color: #01a0e4
-}
-
-.content .pagination a:hover{
-  background-color: #f1f1f1;
-  color: #333
-}
-
-.content .pagination{
-  text-align: center;
-  margin-bottom: 30px
-}
-
-.content .pagination .inactive{
-  background-color: #f1f1f1
-}
-
+/* 
 #profileBox, #resumeBox{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100%;
+  display: flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
 }
+
+
 #profileBox>span>img{
   width: 70%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
 }
 #profileBox>:last-child{
   text-align: left;
-}
-#profileBox p{
-  margin: 10%;
 }
 #profileBox p i{
   width: 100%;
@@ -214,12 +174,20 @@ main>p{
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
 }
 #resumeBox h2{
-  margin-bottom: 5%;
+  margin: 3%;
 }
-#resumeBox>:last-child>div>p{
+#resumeBox>:last-child>div{
+  margin: 3%;
+}
+#resumeBox>:last-child>div>div{
+  display: flex;
+  justify-content: center;
+  margin: 3%;
+}
+#resumeBox>:last-child>div>div>p{
+  width: 70%;
   text-align: left;
 }
-
 
 @media (max-width: 1330px){
   .container{
@@ -242,4 +210,4 @@ main>p{
   .container .content .post img{
       height: 135px
   }
-}
+} */

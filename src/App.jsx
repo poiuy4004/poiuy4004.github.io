@@ -13,7 +13,7 @@ import Footer from "./layout/Footer";
 import Bubbles from "./layout/Bubbles"
 
 function App() {
-  const [sidebarOpen,setSidebarOpen] = useState(true)
+  const [sidebarOpen,setSidebarOpen] = useState(false)
   return (
     <BrowserRouter>
       <Header />
