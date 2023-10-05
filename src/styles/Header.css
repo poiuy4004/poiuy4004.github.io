@@ -42,7 +42,8 @@ header #desktop-nav #desktop-menu li a{
 }
 
 header #desktop-nav #desktop-menu li a:hover{
-  text-decoration: underline
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 header #hammenuToggle{
@@ -140,41 +141,24 @@ header #hammenuToggle input:checked~ul{
 }
 
 
-@media screen and (max-width: 990px){
-  #header #desktop-nav{
-      display:none
+@media (max-width: 768px){
+  #desktop-nav{
+      display:none 
   }
-
-  #header h1{
+  header h1{
       padding: 10px;
       padding-top: 7px;
       max-width: 420px
   }
-
   body{
       background-size: 286%;
       background-position-x: 31%
   }
 }
 
-@media (min-width: 990px){
+@media (min-width: 769px){
   #hammenuToggle{
-      display:none !important;
-      visibility: hidden !important;
-      position: absolute !important
-  }
-}
-@media (max-width: 520px){
-  #header h1{
-      max-width:300px
-  }
-}
-@media screen and (max-width: 350px){
-  #header{
-      margin-bottom:100px
-  }
-
-  #header h1{
-      max-width: 200px
+      display:none;
+      visibility: hidden;
   }
 }

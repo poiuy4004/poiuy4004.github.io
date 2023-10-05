@@ -1,12 +1,17 @@
 
 import styled from "styled-components";
 
-import "../styles/Home.css";
-
 import profileImage from "../assets/profile.png";
 
-import Project from "../components/project/Project";
+import Button from "../components/Button";
+import skills from "../assets/skills";
+import Skill from "../components/skill/Skill";
 import projects from "../assets/projects";
+import Project from "../components/project/Project";
+
+
+
+import "../styles/Home.css";
 
 const Container = styled.div`
   display: flex;
@@ -74,6 +79,7 @@ const ProjectContainer = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3%;
   grid-row-gap: 3%;
+  margin: 5%;
   & img{
     width: 50%;
     align-self: center;
@@ -158,7 +164,9 @@ function Home(){
         <Post>
           <h1>
             Resume<br />
-            <a href="https://www.notion.so/_-1d48f0248b894d149e1b12ed04a4d83a?pvs=4" target="_blank" rel="noreferrer"><button>Notion Resume Page</button></a>
+            <a href="https://www.notion.so/_-1d48f0248b894d149e1b12ed04a4d83a?pvs=4" target="_blank" rel="noreferrer">
+              <Button name="Notion" colorType="black" size="small" />
+            </a>
           </h1>
           <OneOnOneBox>
               <span>
@@ -225,6 +233,22 @@ function Home(){
         </Post>
         <Post>
           <h1>
+            SkillStack<br />
+            <a href="https://github.com/poiuy4004/SkillBox" target="_blank" rel="noreferrer">
+              <Button name="github" colorType="black" size="small" />
+            </a>
+            <a href="" target="_blank" rel="noreferrer">
+              <Button name="Demo" colorType="orange" size="small" />
+            </a>
+          </h1>
+          <section>
+            {skills.map(skill=>
+              <Skill skill={skill} />
+            )}
+          </section>
+        </Post>
+        <Post>
+          <h1>
             Projects
           </h1>
           <ProjectContainer>
@@ -233,44 +257,6 @@ function Home(){
             ))}
           </ProjectContainer>
         </Post>
-
-
-
-          {/* <div className="post">
-            <div>
-              <img src="https://" alt="Profile Picture" />
-            </div>
-            <div>
-              <h2><a href="https://jekyll-podcaster.netlify.app//example-1">A random main episode</a></h2>
-              <div>
-                <span>
-                  <i className="far fa-calendar" aria-hidden="true"></i> 17 Novembre 2019
-                  Whitespace added for readability
-                  <span> - </span>
-                  <i className="far fa-clock"></i> 52:14
-                </span>
-              </div>
-            </div>
-            <div>
-            </div>
-            <div>
-              <p> Description goes here
-                <span>
-                  <a href="https://jekyll-podcaster.netlify.app//example-1">Continue</a>
-                </span>
-              </p>
-            </div>
-            <div>
-              <p> Description goes here
-                <span>
-                  <a href="https://jekyll-podcaster.netlify.app//example-1">Continue</a>
-                </span>
-              </p>
-            </div>
-          </div> */}
-
-
-
       </Container>
     </main>
   )

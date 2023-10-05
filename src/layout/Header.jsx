@@ -14,8 +14,8 @@ function Header(){
       <nav>
         <div id="desktop-nav">
           <ul id="desktop-menu">
-            <li></li>
-            <li></li>
+            <li><a>desktopNav1</a></li>
+            <li><a>desktopNav2</a></li>
           </ul>
         </div>
         <div id="hammenuToggle">

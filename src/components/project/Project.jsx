@@ -2,11 +2,12 @@
 
 import styled from "styled-components";
 
+import Button from "../Button";
+
 const Container = styled.article`
   box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
   background: center / cover no-repeat url(${props=>props.backgroundImg});
   min-height: 625px;
-  cursor: pointer;
   &>section{
     display: none;
   }
@@ -50,10 +51,10 @@ function Project({project}){
           </Description>
           <ButtonBox>
             <a href={project.github} target="_blank" rel="noreferrer">
-              github
+              <Button name="github" colorType="blue" />
             </a>
             <a href={project.demo} target="_blank" rel="noreferrer">
-              Demo
+              <Button name="Demo" colorType="orange" />
             </a>
           </ButtonBox>
         </p>
