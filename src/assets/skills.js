@@ -30,6 +30,6 @@ const skills = {
       level: "30%",
     },
   ],
-  others: ["github","Figma","VScode","StoryBook","Photoshop","PremierePro"]
+  others: ["github","Figma","Postman","OAuth","StoryBook","Photoshop","PremierePro"]
 }
 export default skills;

@@ -26,21 +26,24 @@ const Level = styled.p`
   text-align: right;
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
-  transition: 5s ease-in;
-  ${props=>props.levelP
+  transition: 3s ease-in;
+  ${props=>props.levelValue>1994
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
   }
 `
 
 function Skill({skill}){
-  const [levelP,setLevelP] = useState(false)
-  useEffect(()=>setTimeout(()=>setLevelP(!levelP), 5000),[])
+  const [levelValue,setLevelValue] = useState(window.scrollY)
+  useEffect(()=>{
+    setInterval(()=>setLevelValue(window.scrollY))
+  })
+  
   return(
-    <SkillContainer>
+    <SkillContainer onClick={()=>console.log(levelValue)}>
       <h3>{skill.name}</h3>
       <SkillBox>
-        <Level level={skill.level} levelP={levelP}>{skill.level}</Level>
+        <Level level={skill.level} levelValue={levelValue}>{skill.level}</Level>
       </SkillBox>
     </SkillContainer>
   )
