@@ -14,8 +14,10 @@ function Header(){
       <nav>
         <div id="desktop-nav">
           <ul id="desktop-menu">
-            <li><a>desktopNav1</a></li>
-            <li><a>desktopNav2</a></li>
+            <li><a href="#profileContainer">Profile</a></li>
+            <li><a href="#resumeContainer"> Resume</a></li>
+            <li><a href="#skillContainer"> SkillSkack</a></li>
+            <li><a href="#projectContainer"> Project</a></li>
           </ul>
         </div>
         <div id="hammenuToggle">
@@ -24,8 +26,10 @@ function Header(){
           <span></span>
           <span></span>
           <ul id="menu">
-            <li></li>
-            <li></li>
+            <li><a href="#profileContainer">Profile</a></li>
+            <li><a href="#resumeContainer"> Resume</a></li>
+            <li><a href="#skillContainer"> SkillSkack</a></li>
+            <li><a href="#projectContainer"> Project</a></li>
           </ul>
         </div>
       </nav>

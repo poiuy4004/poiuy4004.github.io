@@ -9,8 +9,6 @@ import Skill from "../components/skill/Skill";
 import projects from "../assets/projects";
 import Project from "../components/project/Project";
 
-
-
 import "../styles/Home.css";
 
 const Container = styled.div`
@@ -39,6 +37,7 @@ const OneOnOneBox = styled.section`
 `
 
 const ProfileImg = styled.img`
+  width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
 `
 
@@ -72,6 +71,15 @@ const OneOnOneInfo = styled.p`
   &>p>ul>ul{
     margin: 3%;
   }
+`
+
+const MainSkillBox = styled.section`
+  margin-top: -3%;
+`
+
+const Other = styled.span`
+  margin-right: 20px;
+  font-size: x-large;
 `
 
 const ProjectContainer = styled.section`
@@ -161,7 +169,7 @@ function Home(){
             </OneOnOneInfo>
           </OneOnOneBox>
         </Post>
-        <Post>
+        <Post id="resumeContainer">
           <h1>
             Resume<br />
             <a href="https://www.notion.so/_-1d48f0248b894d149e1b12ed04a4d83a?pvs=4" target="_blank" rel="noreferrer">
@@ -231,7 +239,7 @@ function Home(){
               </OneOnOneInfo>
           </OneOnOneBox>
         </Post>
-        <Post>
+        <Post id="skillContainer">
           <h1>
             SkillStack<br />
             <a href="https://github.com/poiuy4004/SkillBox" target="_blank" rel="noreferrer">
@@ -241,13 +249,18 @@ function Home(){
               <Button name="Demo" colorType="orange" size="small" />
             </a>
           </h1>
-          <section>
-            {skills.map(skill=>
+          <h2>Main</h2>
+          <MainSkillBox>
+            {skills.main.map(skill=>
               <Skill skill={skill} />
             )}
+          </MainSkillBox>
+          <h2>Other</h2>
+          <section>
+            {skills.others.map(other=><Other>{other}</Other>)}
           </section>
         </Post>
-        <Post>
+        <Post id="projectContainer">
           <h1>
             Projects
           </h1>

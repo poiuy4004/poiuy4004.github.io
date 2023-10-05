@@ -27,11 +27,11 @@ function Sidebar(){
       <div id="ascoltare">
         <div id="lista-siti">
           <ul id="siti">
-            <li><a href="#profileContainer">profile</a></li>
-            <li><a href="#"> Resume</a></li>
-            <li><a href="#"> Cover Letter</a></li>
-            <li><a href="#"> Project</a></li>
-            <li><a href="#"> SkillSkack</a></li>
+            <li><a href="#header"> CoverLetter</a></li>
+            <li><a href="#profileContainer">Profile</a></li>
+            <li><a href="#resumeContainer"> Resume</a></li>
+            <li><a href="#skillContainer"> SkillSkack</a></li>
+            <li><a href="#projectContainer"> Project</a></li>
             <li><a href="#header">TOP</a></li>
           </ul>
         </div>

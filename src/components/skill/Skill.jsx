@@ -26,7 +26,7 @@ const Level = styled.p`
   text-align: right;
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
-  transition: 10s;
+  transition: 5s ease-in;
   ${props=>props.levelP
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
@@ -35,7 +35,7 @@ const Level = styled.p`
 
 function Skill({skill}){
   const [levelP,setLevelP] = useState(false)
-  useEffect(()=>setLevelP(!levelP),[])
+  useEffect(()=>setTimeout(()=>setLevelP(!levelP), 5000),[])
   return(
     <SkillContainer>
       <h3>{skill.name}</h3>
@@ -47,28 +47,9 @@ function Skill({skill}){
 }
 export default Skill;
 
-// TML5
-// 80 %
-// CSS3
-// 80 %
-// JavaScript
-// 70 %
-// jQuery
-// 50 %
-// React
-// 70 %
-// TypeScript
-// 30 %
-// Next.js
-// 30 %
-// SCSS
-// 60 %
-// Bootstrap
-// 70 %
-// Semantic UI
-// 70 %
-// Figma
-// 70 %
-// MySQL
-// 30 %
-// Github
+// https://savinpark.github.io/portfolio/
+// https://kim-ji-min.github.io/My-Portfolio/
+// https://zero-base.co.kr/event/media_insight_contents_FE_frontend_portfolio_web
+// https://urclass.codestates.com/content/77beef40-40e0-401b-8c0a-08e4ddac0601?playlist=2258
+// FileReader
+// ReactDOM
