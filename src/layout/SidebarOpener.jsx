@@ -6,7 +6,7 @@ function SidebarOpener({sidebarOpen,setSidebarOpen}){
   return(
     <button onClick={e=>{e.preventDefault(); setSidebarOpen(!sidebarOpen);}} id="sidebarOpener">
       {sidebarOpen
-      ? <b class="fa-solid fa-x"></b>
+      ? <b className="fa-solid fa-x"></b>
       : <i className="fa-solid fa-bars"></i>
       }
     </button>

@@ -4,7 +4,7 @@ import "../styles/Bubbles.css"
 
 function Bubbles(){
   return(
-    <div class="bubbles">
+    <div className="bubbles">
         <div></div>
         <div></div>
         <div></div>
