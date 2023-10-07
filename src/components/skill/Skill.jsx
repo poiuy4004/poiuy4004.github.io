@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 
@@ -25,32 +26,35 @@ const Level = styled.p`
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
   transition: 3s ease-in;
-  transform: translateX(-100%);
-  &.renderLevel{
-    transform: translateX(0%);
+  ${props=>props.levelValue>1994
+  ? "transform: translateX(0%);"
+  : "transform: translateX(-100%);"
   }
 `
 
 function Skill({skill}){
-
-  const intersectionObserver = new IntersectionObserver(nodeList=>{
-    nodeList.forEach(node=>{
-      if (node.intersectionRatio > 0) {
-        node.target.classList.add('renderLevel');
-      }
-      else {
-        node.target.classList.remove('renderLevel');
-      }
-    })
+  const [levelValue,setLevelValue] = useState(window.scrollY)
+  useEffect(()=>{
+    setInterval(()=>setLevelValue(window.scrollY))
   })
-  const levelNodeList = document.querySelectorAll(".levelList");
-  levelNodeList.forEach(levelNode=>intersectionObserver.observe(levelNode));
+  // const intersectionObserver = new IntersectionObserver(nodeList=>{
+  //   nodeList.forEach(node=>{
+  //     if (node.intersectionRatio > 0) {
+  //       node.target.classList.add('renderLevel');
+  //     }
+  //     else {
+  //       node.target.classList.remove('renderLevel');
+  //     }
+  //   })
+  // })
+  // const levelNodeList = document.querySelectorAll(".levelList");
+  // levelNodeList.forEach(levelNode=>intersectionObserver.observe(levelNode));
 
   return(
     <SkillContainer>
       <h3>{skill.name}</h3>
       <SkillBox>
-        <Level className="levelList" level={skill.level}>{skill.level}</Level>
+        <Level level={skill.level} levelValue={levelValue}>{skill.level}</Level>
       </SkillBox>
     </SkillContainer>
   )
@@ -62,5 +66,6 @@ export default Skill;
 // https://zero-base.co.kr/event/media_insight_contents_FE_frontend_portfolio_web
 // https://urclass.codestates.com/content/77beef40-40e0-401b-8c0a-08e4ddac0601?playlist=2258
 // http://blog.hyeyoonjung.com/2019/01/09/intersectionobserver-tutorial/
+// https://velog.io/@elrion018/%EC%8B%A4%EB%AC%B4%EC%97%90%EC%84%9C-%EB%8A%90%EB%82%80-%EC%A0%90%EC%9D%84-%EA%B3%81%EB%93%A4%EC%9D%B8-Intersection-Observer-API-%EC%A0%95%EB%A6%AC
 // FileReader
 // ReactDOM
