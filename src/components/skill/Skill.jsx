@@ -1,6 +1,6 @@
 
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 
@@ -27,23 +27,32 @@ const Level = styled.p`
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
   transition: 3s ease-in;
-  ${props=>props.levelValue>1994
-  ? "transform: translateX(0%);"
-  : "transform: translateX(-100%);"
+  transform: translateX(-100%);
+  &.renderLevel{
+    transform: translateX(0%);
   }
 `
 
 function Skill({skill}){
-  const [levelValue,setLevelValue] = useState(window.scrollY)
-  useEffect(()=>{
-    setInterval(()=>setLevelValue(window.scrollY))
+
+  const intersectionObserver = new IntersectionObserver(nodeList=>{
+    nodeList.forEach(node=>{
+      if (node.intersectionRatio > 0) {
+        node.target.classList.add('renderLevel');
+      }
+      else {
+        node.target.classList.remove('renderLevel');
+      }
+    })
   })
-  
+  const levelNodeList = document.querySelectorAll(".levelList");
+  levelNodeList.forEach(levelNode=>intersectionObserver.observe(levelNode));
+
   return(
-    <SkillContainer onClick={()=>console.log(levelValue)}>
+    <SkillContainer>
       <h3>{skill.name}</h3>
       <SkillBox>
-        <Level level={skill.level} levelValue={levelValue}>{skill.level}</Level>
+        <Level className="levelList" level={skill.level}>{skill.level}</Level>
       </SkillBox>
     </SkillContainer>
   )
@@ -54,5 +63,6 @@ export default Skill;
 // https://kim-ji-min.github.io/My-Portfolio/
 // https://zero-base.co.kr/event/media_insight_contents_FE_frontend_portfolio_web
 // https://urclass.codestates.com/content/77beef40-40e0-401b-8c0a-08e4ddac0601?playlist=2258
+// http://blog.hyeyoonjung.com/2019/01/09/intersectionobserver-tutorial/
 // FileReader
 // ReactDOM
