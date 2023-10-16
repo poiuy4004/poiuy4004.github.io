@@ -12,7 +12,7 @@ import Footer from "./layout/Footer";
 import Bubbles from "./layout/Bubbles"
 
 function App() {
-  const [sidebarOpen,setSidebarOpen] = useState(true)
+  const [sidebarOpen,setSidebarOpen] = useState(window.innerWidth>768? true : false)
   return (
     <BrowserRouter>
       <Header />
@@ -21,7 +21,10 @@ function App() {
       </Routes>
       {sidebarOpen? <Sidebar /> : null}
       <Footer />
-      <SidebarOpener sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      {window.innerWidth>768
+      ? <SidebarOpener sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      : null
+      }
       <Bubbles />
     </BrowserRouter>
   );

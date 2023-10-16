@@ -27,6 +27,9 @@ const Post = styled.article`
   &>h1{
     margin-bottom: 5%;
   }
+  @media (max-width: 768px) {
+    width: 95% !important;
+  }
 `
 
 const OneOnOneBox = styled.section`
@@ -98,25 +101,19 @@ function Home(){
 
   return(
     <main>
-      <h1>
-        <div id="introduce1">
-          안녕하세요
-        </div>
-        <div id="introduce2">
-          꼰대같은 개발자
-        </div>
-        <div id="introduce3">
-          장용민 입니다
-        </div>
+      <h1 id="introduceBox">
+        <div id="introduce1"></div>
+        <div id="introduce2"></div>
+        <div id="introduce3"></div>
       </h1>
 
       <div>
-        <p>
+        <p className="introduceDetail">
           <strong>호기심</strong>이 많은 저는 어려서부터 호기심을 따라 걸었습니다.
           <br />
           그렇게 도착한 곳은, 끝없는 지식이 펼쳐진 보물창고 <strong>코딩</strong>이었습니다.
         </p>
-        <p>
+        <p className="introduceDetail">
           단순히 궁금증을 해결해주는 것을 넘어, 눈으로 직접 확인시켜주는
           <br />
           <strong>프론트엔드의 매력</strong>에

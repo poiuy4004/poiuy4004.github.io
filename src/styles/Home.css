@@ -6,13 +6,14 @@ main{
 
 main>h1{
   margin: 3%;
-}
+} 
 
-#introduce1,#introduce2,#introduce3{
-  min-width:11px;
-  white-space: nowrap;
-  color: transparent;
-  margin: 2%;
+#introduceBox{
+  height: 200px;
+  width: 100%;
+}
+#introduceBox>*{
+  width: 100%;
 }
 #introduce1::before{
   content: "안녕하세요";
@@ -145,4 +146,22 @@ main>div>p{
 }
 main a{
   margin: 0 1%;
+}
+
+@media(max-width: 768px){
+  #introduceBox{
+    margin-top: 25%;
+  }
+  #introduce1::before{
+    top: 25%; left: 45.2%;
+  }
+  #introduce2::before{
+    top: 27.5%; left: 43%;
+  }
+  #introduce3::before{
+    top: 30%; left: 44%;
+  }
+  #introduce1::before,#introduce2::before,#introduce3::before{
+    font-size: large !important;
+  }
 }

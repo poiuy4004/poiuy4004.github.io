@@ -30,6 +30,12 @@ const Level = styled.p`
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
   }
+  @media (max-width: 768px) {
+    ${props=>props.levelValue>1111
+    ? "transform: translateX(0%); !important"
+    : "transform: translateX(-100%) !important;"
+    }
+  }
 `
 
 function Skill({skill}){
