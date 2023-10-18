@@ -6,140 +6,104 @@ main{
 
 main>h1{
   margin: 3%;
-} 
-
-#introduceBox{
-  height: 200px;
-  width: 100%;
 }
-#introduceBox>*{
-  width: 100%;
+
+#introduceContainer{
+  display: flex;
+  margin: 14% 0;
+  justify-content: center;
+  text-align: center;
 }
 #introduce1::before{
+  position: absolute;
+  top: 45%; left: 50%;
+  transform: translate(-50%,-50%);
   content: "안녕하세요";
   white-space: pre;
-  position: absolute;
-  top: 35%; left: 45.2%;
-  color: black;
   overflow: hidden;
-  animation: typing1 8s steps(6) infinite;
+  color: black;
+  animation: typing1 9s steps(16) infinite;
 }
 #introduce2::before{
+  position: absolute;
+  top: 48%; left: 50%;
+  transform: translate(-50%,-50%);
   content: "꼰대같은 개발자";
   white-space: pre;
-  position: absolute;
-  top: 40%; left: 43%;
-  color: black;
   overflow: hidden;
-  animation: typing2 8s steps(7) infinite;
+  color: black;
+  animation: typing2 9s steps(14) infinite;
 }
 #introduce3::before{
+  position: absolute;
+  top: 51%; left: 50%;
+  transform: translate(-50%,-50%);
   content: "장용민 입니다";
   white-space: pre;
-  position: absolute;
-  top: 45%; left: 44%;
-  color: black;
   overflow: hidden;
-  animation: typing3 8s steps(7) infinite;
+  color: black;
+  animation: typing3 9s steps(16) infinite;
 }
 
 @keyframes typing1{
   0%{
-    width: 0%;
+    width: 0;
     border-right: solid 1px black;
   }
-  10%{
-    width: 12%;
+  8%{
     border-right: solid 1px black;
   }
-  11%{
-    border: none;
+  9%{
+    border-right: none;
   }
-  89%{
-    border: none;
-  }
-  90%{
-    width: 12%;
-    border-right: solid 1px black;
-  }
-  100%{
-    width: 0%;
+  20%{
+    width: 20%;
   }
 }
 @keyframes typing2{
   0%{
-    width: 0%;
+    width: 0;
   }
-  10%{
-    width: 0%;
-    border: none;
+  14%{
+    border-right: none;
   }
-  11%{
+  15%{
+    width: 0;
     border-right: solid 1px black;
   }
-  20%{
-    width: 15%;
+  25%{
     border-right: solid 1px black;
   }
-  21%{
-    border: none;
+  26%{
+    border-right: none;
   }
-  79%{
-    border: none;
-  }
-  80%{
-    width: 15%;
-    border-right: solid 1px black;
-  }
-  90%{
-    width: 0%;
-    border-right: solid 1px black;
-  }
-  91%{
-    border: none;
-  }
-  100%{
-    width: 0%;
+  35%{
+    width: 20%;
   }
 }
 @keyframes typing3{
   0%{
-    width: 0%;
-  }
-  20%{
-    width: 0%;
-    border: none;
-  }
-  21%{
-    border-right: solid 1px black;
-  }
-  30%{
-    width: 14%;
-    border-right: solid 1px black;
+    width: 0;
   }
   31%{
-    border: none;
+    border-right: none;
   }
-  70%{
-    width: 14%;
-    border: none;
-  }
-  71%{
+  32%{
+    width: 0;
     border-right: solid 1px black;
   }
-  80%{
-    width: 0%;
+  42%{
     border-right: solid 1px black;
   }
-  81%{
-    border: none;
+  43%{
+    border-right: none;
   }
-  100%{
-    width: 0%;
+  52%{
+    width: 20%;
   }
 }
 
-main>div>p{
+#introduceDetailBox>p{
   text-align: center;
   margin-bottom: 2%;
   font-size: 180%;
@@ -149,19 +113,88 @@ main a{
 }
 
 @media(max-width: 768px){
-  #introduceBox{
-    margin-top: 25%;
-  }
   #introduce1::before{
-    top: 25%; left: 45.2%;
+    top: 30%;
+    animation: typingM1 7s steps(9) infinite;
   }
   #introduce2::before{
-    top: 27.5%; left: 43%;
+    top: 33%;
+    animation: typingM2 7s steps(10) infinite;
   }
   #introduce3::before{
-    top: 30%; left: 44%;
+    top: 36%;
+    animation: typingM3 7s steps(9) infinite;
   }
   #introduce1::before,#introduce2::before,#introduce3::before{
-    font-size: large !important;
+    font-size: medium !important;
+  }
+  #introduceDetailBox{
+    margin: 55% 0;
+  }
+  #profileContainer b{
+    display: none;
+  }
+  #profileContainer>section>p>div{
+    margin: 50% 0;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@keyframes typingM1{
+  0%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  9%{
+    border-right: solid 1px black;
+  }
+  10%{
+    border-right: none;
+  }
+  20%{
+    width: 50%;
+  }
+}
+@keyframes typingM2{
+  0%{
+    width: 0;
+  }
+  17%{
+    border-right: none;
+  }
+  18%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  28%{
+    border-right: solid 1px black;
+  }
+  29%{
+    border-right: none;
+  }
+  35%{
+    width: 50%;
+  }
+}
+@keyframes typingM3{
+  0%{
+    width: 0;
+  }
+  42%{
+    border-right: none;
+  }
+  43%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  53%{
+    border-right: solid 1px black;
+  }
+  54%{
+    border-right: none;
+  }
+  61%{
+    width: 50%;
   }
 }

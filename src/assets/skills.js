@@ -11,7 +11,7 @@ const skills = {
     },
     {
       name: "Javascript",
-      level: "90%",
+      level: "95%",
     },
     {
       name: "Typescript",
@@ -20,6 +20,14 @@ const skills = {
     {
       name: "React",
       level: "90%",
+    },
+    {
+      name: "Next.js",
+      level: "60%",
+    },
+    {
+      name: "jQuery",
+      level: "60%",
     },
     {
       name: "git",

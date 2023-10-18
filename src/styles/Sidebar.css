@@ -1,6 +1,7 @@
 #sidebarNav{
   position: fixed;
-  top: 100px; right: 30px;
+  top: 15%; bottom: 15%;
+  right: 1%;
   width: 15%;
   order: 5;
   background-color: white;

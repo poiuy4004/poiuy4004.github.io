@@ -1,7 +1,8 @@
 
 import styled from "styled-components";
 
-import profileImage from "../assets/profile.png";
+import profileImg from "../assets/profile.jpg"
+import resumeImg from "../assets/resume.png";
 
 import Button from "../components/Button";
 import skills from "../assets/skills";
@@ -28,7 +29,7 @@ const Post = styled.article`
     margin-bottom: 5%;
   }
   @media (max-width: 768px) {
-    width: 95% !important;
+    width: 90% !important;
   }
 `
 
@@ -37,11 +38,27 @@ const OneOnOneBox = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3%;
   align-items: center;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    &>:nth-child(even){
+      margin: 20%;
+    }
+  }
 `
 
 const ProfileImg = styled.img`
   width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+`
+const ResumeImg = styled.img`
+  width: 80%;
+  box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `
 
 const OneOnOneInfo = styled.p`
@@ -81,8 +98,12 @@ const MainSkillBox = styled.section`
 `
 
 const Other = styled.span`
-  margin-right: 20px;
+  margin-right: 24px;
   font-size: x-large;
+  @media (max-width: 768px) {
+    font-size: xx-small !important;
+    margin-right: 3px !important;
+  }
 `
 
 const ProjectContainer = styled.section`
@@ -95,19 +116,27 @@ const ProjectContainer = styled.section`
     width: 50%;
     align-self: center;
   }
+  @media (max-width: 768px) {
+    display: block;
+    &>*{
+      margin: 10% 0;
+    }
+  }
 `
 
 function Home(){
 
   return(
     <main>
-      <h1 id="introduceBox">
-        <div id="introduce1"></div>
-        <div id="introduce2"></div>
-        <div id="introduce3"></div>
+      <h1 id="introduceContainer">
+        <div>
+          <div id="introduce1"></div>
+          <div id="introduce2"></div>
+          <div id="introduce3"></div>
+        </div>
       </h1>
 
-      <div>
+      <div id="introduceDetailBox">
         <p className="introduceDetail">
           <strong>호기심</strong>이 많은 저는 어려서부터 호기심을 따라 걸었습니다.
           <br />
@@ -134,7 +163,7 @@ function Home(){
           </h1>
           <OneOnOneBox>
             <span>
-              <ProfileImg src={profileImage} alt="Profile Picture" />
+              <ProfileImg src={profileImg} alt="Profile Picture" />
             </span>
             <OneOnOneInfo>
               <a href="#profileContainer">
@@ -175,7 +204,7 @@ function Home(){
           </h1>
           <OneOnOneBox>
               <span>
-                <ProfileImg src={profileImage} alt="Profile Picture" />
+                <ResumeImg src={resumeImg} alt="Resume Picture" />
               </span>
               <OneOnOneInfo>
                 <h2>

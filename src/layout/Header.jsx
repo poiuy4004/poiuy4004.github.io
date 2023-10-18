@@ -1,6 +1,4 @@
 
-
-
 import { Link } from "react-router-dom";
 
 import "../styles/Header.css"
@@ -10,8 +8,7 @@ function Header(){
     <header id="header">
       <h1>
         <Link to="*">YongMin's Portfolio</Link>
-      </h1>
-      <nav>
+        <nav>
         <div id="desktop-nav">
           <ul id="desktop-menu">
             <li><a href="#profileContainer">Profile</a></li>
@@ -33,6 +30,7 @@ function Header(){
           </ul>
         </div>
       </nav>
+      </h1>
     </header>
   )
 }
