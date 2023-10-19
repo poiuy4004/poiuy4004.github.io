@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.c854d6f0.css",
+    "main.css": "/static/css/main.bd11d371.css",
     "main.js": "/static/js/main.5da9bd57.js",
     "static/media/StackOverflow.png": "/static/media/StackOverflow.d3fe3a758204dd777522.png",
     "static/media/main.png": "/static/media/main.0084e4234608d3bde06a.png",
@@ -10,11 +10,11 @@
     "index.html": "/index.html",
     "static/media/favicon.ico": "/static/media/favicon.fa6c866d0dd5cb323d31.ico",
     "static/media/Background_Header.svg": "/static/media/Background_Header.3a2e386b20e6db423a09.svg",
-    "main.c854d6f0.css.map": "/static/css/main.c854d6f0.css.map",
+    "main.bd11d371.css.map": "/static/css/main.bd11d371.css.map",
     "main.5da9bd57.js.map": "/static/js/main.5da9bd57.js.map"
   },
   "entrypoints": [
-    "static/css/main.c854d6f0.css",
+    "static/css/main.bd11d371.css",
     "static/js/main.5da9bd57.js"
   ]
 }
