@@ -32,7 +32,7 @@
 }
 
 #sidebarNav ul li{
-  margin-bottom: 3px
+  margin-bottom: 3%;
 }
 
 #sidebarNav ul li a{
@@ -40,14 +40,14 @@
 }
 
 #sidebarNav ul li a:hover{
-  text-decoration: underline
+  text-decoration: underline;
 }
 
 #sidebarNav img{
   max-width: 100%;
   height: auto;
   border-radius: 5px;
-  margin-bottom: 5px
+  margin-bottom: 18%;
 }
 
 #sidebarNav #social::before{
