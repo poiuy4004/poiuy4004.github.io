@@ -1,0 +1,206 @@
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main>h1{
+  margin: 3%;
+}
+
+#introduceContainer{
+  display: flex;
+  margin: 14% 0;
+  justify-content: center;
+  text-align: center;
+}
+#introduce1::before{
+  position: absolute;
+  top: 45%; left: 50%;
+  transform: translate(-50%,-50%);
+  content: "안녕하세요";
+  white-space: pre;
+  overflow: hidden;
+  color: black;
+  animation: typing1 9s steps(16) infinite;
+}
+#introduce2::before{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  content: "꼰대같은 개발자";
+  white-space: pre;
+  overflow: hidden;
+  color: black;
+  animation: typing2 9s steps(14) infinite;
+}
+#introduce3::before{
+  position: absolute;
+  top: 55%; left: 50%;
+  transform: translate(-50%,-50%);
+  content: "장용민 입니다";
+  white-space: pre;
+  overflow: hidden;
+  color: black;
+  animation: typing3 9s steps(16) infinite;
+}
+
+@keyframes typing1{
+  0%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  8%{
+    border-right: solid 1px black;
+  }
+  9%{
+    border-right: none;
+  }
+  20%{
+    width: 20%;
+  }
+}
+@keyframes typing2{
+  0%{
+    width: 0;
+  }
+  14%{
+    border-right: none;
+  }
+  15%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  25%{
+    border-right: solid 1px black;
+  }
+  26%{
+    border-right: none;
+  }
+  35%{
+    width: 20%;
+  }
+}
+@keyframes typing3{
+  0%{
+    width: 0;
+  }
+  31%{
+    border-right: none;
+  }
+  32%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  42%{
+    border-right: solid 1px black;
+  }
+  43%{
+    border-right: none;
+  }
+  52%{
+    width: 20%;
+  }
+}
+
+#introduceDetailBox>p{
+  text-align: center;
+  margin-bottom: 2%;
+  font-size: 180%;
+}
+main a{
+  margin: 0 1%;
+}
+#profileContainer>section>p>div>a>:last-child{
+  display: none;
+}
+
+@media(max-width: 768px){
+  #introduce1::before{
+    top: 30%;
+    animation: typingM1 7s steps(9) infinite;
+  }
+  #introduce2::before{
+    top: 33%;
+    animation: typingM2 7s steps(10) infinite;
+  }
+  #introduce3::before{
+    top: 36%;
+    animation: typingM3 7s steps(9) infinite;
+  }
+  #introduce1::before,#introduce2::before,#introduce3::before{
+    font-size: medium !important;
+  }
+  #introduceDetailBox{
+    margin: 55% 0;
+  }
+  #profileContainer>section>p>div>a>:nth-child(2){
+    display: none;
+  }
+  #profileContainer>section>p>div>a>:last-child{
+    display: block;
+  }
+  #profileContainer>section>p>div{
+    margin: 50% 0;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@keyframes typingM1{
+  0%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  9%{
+    border-right: solid 1px black;
+  }
+  10%{
+    border-right: none;
+  }
+  20%{
+    width: 50%;
+  }
+}
+@keyframes typingM2{
+  0%{
+    width: 0;
+  }
+  17%{
+    border-right: none;
+  }
+  18%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  28%{
+    border-right: solid 1px black;
+  }
+  29%{
+    border-right: none;
+  }
+  35%{
+    width: 50%;
+  }
+}
+@keyframes typingM3{
+  0%{
+    width: 0;
+  }
+  42%{
+    border-right: none;
+  }
+  43%{
+    width: 0;
+    border-right: solid 1px black;
+  }
+  53%{
+    border-right: solid 1px black;
+  }
+  54%{
+    border-right: none;
+  }
+  61%{
+    width: 50%;
+  }
+}
