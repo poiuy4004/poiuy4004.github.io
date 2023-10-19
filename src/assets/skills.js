@@ -27,7 +27,7 @@ const skills = {
     },
     {
       name: "jQuery",
-      level: "60%",
+      level: "40%",
     },
     {
       name: "git",

@@ -11,3 +11,11 @@ footer{
 a{
   color: black;
 }
+@media (max-width: 768px) {
+  footer{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  footer>:nth-child(3),footer>:nth-child(4){
+    display: none;
+  }
+}

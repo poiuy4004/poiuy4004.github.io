@@ -33,3 +33,8 @@
     transform: rotate(-0.1turn);
   }
 }
+@media (max-width: 768px) {
+  #sidebarOpener{
+    display: none;
+  }
+}

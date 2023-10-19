@@ -72,6 +72,9 @@ const OneOnOneInfo = styled.p`
     flex-direction: column;
     >a{
       margin: 3% 0;
+      @media (max-width: 768px) {
+        text-align: center; 
+      }
     }
   }
   &>a{
@@ -186,10 +189,12 @@ function Home(){
                 <a href="https://github.com/poiuy4004" target="_blank" rel="noreferrer">
                   <i className="fa-brands fa-github"></i>
                   <b className="fa-solid">https://github.com/poiuy4004</b>
+                  <b className="fa-solid">바로가기</b>
                 </a>
                 <a href="https://kkamjang.tistory.com" target="_blank" rel="noreferrer">
                   <i className="fa-brands fa-blogger"></i>
                   <b className="fa-solid">https://kkamjang.tistory.com</b>
+                  <b className="fa-solid">바로가기</b>
                 </a>
               </div>
             </OneOnOneInfo>
@@ -208,7 +213,7 @@ function Home(){
               </span>
               <OneOnOneInfo>
                 <h2>
-                  🧑🏻‍💻 Career
+                  💻 Career
                 </h2>
                 <p>
                   <ul>

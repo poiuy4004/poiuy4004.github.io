@@ -98,7 +98,7 @@
 }
 
 @media(max-width: 768px){
-  #sidebarNav h3,#info{
+  #sidebarNav{
     display: none;
   }
 }

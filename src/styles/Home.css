@@ -111,6 +111,9 @@ main>h1{
 main a{
   margin: 0 1%;
 }
+#profileContainer>section>p>div>a>:last-child{
+  display: none;
+}
 
 @media(max-width: 768px){
   #introduce1::before{
@@ -131,8 +134,11 @@ main a{
   #introduceDetailBox{
     margin: 55% 0;
   }
-  #profileContainer b{
+  #profileContainer>section>p>div>a>:nth-child(2){
     display: none;
+  }
+  #profileContainer>section>p>div>a>:last-child{
+    display: block;
   }
   #profileContainer>section>p>div{
     margin: 50% 0;

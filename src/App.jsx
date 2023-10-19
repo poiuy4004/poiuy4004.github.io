@@ -21,10 +21,7 @@ function App() {
       </Routes>
       {sidebarOpen? <Sidebar /> : null}
       <Footer />
-      {window.innerWidth>768
-      ? <SidebarOpener sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      : null
-      }
+      <SidebarOpener sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Bubbles />
     </BrowserRouter>
   );
