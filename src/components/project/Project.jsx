@@ -9,7 +9,7 @@ const Container = styled.article`
   min-height: 625px;
   ${props=>props.open
   ? "background: rgba(0,0,0,0.8);"
-  : "box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5); background: center / cover no-repeat url("+props.backgroundImg+");"
+  : "box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5); background: center 0 / cover no-repeat url("+props.backgroundImg+");"
   }
   &:hover{
     background: rgba(0,0,0,0.8);

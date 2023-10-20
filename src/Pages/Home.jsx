@@ -276,7 +276,7 @@ function Home(){
             <a href="https://github.com/poiuy4004/SkillBox" target="_blank" rel="noreferrer">
               <Button name="github" colorType="black" size="small" />
             </a>
-            <a href="" target="_blank" rel="noreferrer">
+            <a href="https://poiuy4004.github.io/SkillBox/" target="_blank" rel="noreferrer">
               <Button name="Demo" colorType="orange" size="small" />
             </a>
           </h1>
