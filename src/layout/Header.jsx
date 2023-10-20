@@ -11,6 +11,7 @@ function Header(){
         <nav>
         <div id="desktop-nav">
           <ul id="desktop-menu">
+            <li><a href="#introduceContainer"> CoverLetter</a></li>
             <li><a href="#profileContainer">Profile</a></li>
             <li><a href="#resumeContainer"> Resume</a></li>
             <li><a href="#skillContainer"> SkillSkack</a></li>
@@ -23,10 +24,12 @@ function Header(){
           <span></span>
           <span></span>
           <ul id="menu">
+            <li><a href="#introduceContainer"> CoverLetter</a></li>
             <li><a href="#profileContainer">Profile</a></li>
             <li><a href="#resumeContainer"> Resume</a></li>
             <li><a href="#skillContainer"> SkillSkack</a></li>
             <li><a href="#projectContainer"> Project</a></li>
+            <li><a href="#header">TOP</a></li>
           </ul>
         </div>
       </nav>

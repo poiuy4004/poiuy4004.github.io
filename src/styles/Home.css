@@ -10,7 +10,7 @@ main>h1{
 
 #introduceContainer{
   display: flex;
-  margin: 14% 0;
+  margin: 12% 0 15% 0;
   justify-content: center;
   text-align: center;
 }

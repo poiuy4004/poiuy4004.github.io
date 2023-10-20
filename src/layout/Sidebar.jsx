@@ -1,12 +1,17 @@
 
+import styled from "styled-components";
+
 import "../styles/Sidebar.css"
 
 import dragon from "../assets/dragon.png"
 
+const SidebarNav = styled.nav`
+  
+`
 
 function Sidebar(){
   return(
-    <nav id="sidebarNav">
+    <SidebarNav id="sidebarNav">
       <img src={dragon} alt="YongMin's Character" />
       <div id="info">
         <h3>YongMin's Portfolio</h3>
@@ -26,19 +31,19 @@ function Sidebar(){
         <a href="/*" target="_blank" id="youtube"><i className="fab fa-youtube" aria-hidden="true"></i></a>
         <a href="https://kkamjang.tistory.com" target="_blank" id="rss" rel="noreferrer"><i className="fas fa-rss" aria-hidden="true"></i></a>
       </div>
-      <div id="ascoltare">
-        <div id="lista-siti">
-          <ul id="siti">
-            <li><a href="#header"> CoverLetter</a></li>
+      <div>
+        <div>
+          <ul>
+            <li><a href="#introduceContainer">CoverLetter</a></li>
             <li><a href="#profileContainer">Profile</a></li>
-            <li><a href="#resumeContainer"> Resume</a></li>
-            <li><a href="#skillContainer"> SkillSkack</a></li>
-            <li><a href="#projectContainer"> Project</a></li>
+            <li><a href="#resumeContainer">Resume</a></li>
+            <li><a href="#skillContainer">SkillSkack</a></li>
+            <li><a href="#projectContainer">Project</a></li>
             <li><a href="#header">TOP</a></li>
           </ul>
         </div>
       </div>
-    </nav>
+    </SidebarNav>
   )
 }
 export default Sidebar;
