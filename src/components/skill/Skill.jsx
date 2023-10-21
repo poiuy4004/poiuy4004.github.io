@@ -26,12 +26,12 @@ const Level = styled.p`
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
   transition: 3s ease-in;
-  ${props=>props.levelValue>1994
+  ${props=>props.levelValue>2468
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
   }
   @media (max-width: 768px) {
-    ${props=>props.levelValue>1111
+    ${props=>props.levelValue>2345
     ? "transform: translateX(0%); !important"
     : "transform: translateX(-100%) !important;"
     }

@@ -10,11 +10,11 @@ const skills = {
       level: "85%",
     },
     {
-      name: "Javascript",
+      name: window.innerWidth>768? "Javascript" : "JS",
       level: "95%",
     },
     {
-      name: "Typescript",
+      name: window.innerWidth>768? "Typescript" : "TS",
       level: "80%",
     },
     {
