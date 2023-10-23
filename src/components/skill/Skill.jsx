@@ -39,7 +39,6 @@ const Level = styled.p`
 `
 
 function Skill({skill}){
-  // const [levelValue,setLevelValue] = useState(window.scrollY)
   const [levelRender,setLevelRender] = useState(false)
   const skillBox = useRef(null)
   function levelRenderHandler(){
