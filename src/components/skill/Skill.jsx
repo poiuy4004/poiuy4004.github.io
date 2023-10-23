@@ -30,35 +30,30 @@ const Level = styled.p`
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
   }
-  @media (max-width: 768px) {
-    ${props=>props.levelRender
-    ? "transform: translateX(0%); !important"
-    : "transform: translateX(-100%) !important;"
-    }
-  }
 `
 
 function Skill({skill}){
   const [levelRender,setLevelRender] = useState(false)
   const skillBox = useRef(null)
-  function levelRenderHandler(){
-    setLevelRender(true)
+  function levelRenderHandler(entries){
+    setLevelRender(entries[0].isIntersecting)
+    console.log(entries[0])
   }
   const observeOptions = {
-    threshold: 1.0
+    threshold: 1.0,
   }
   const observber = new IntersectionObserver(levelRenderHandler,observeOptions)
 
   useEffect(()=>{
     observber.observe(skillBox.current)
   },[])
-console.log(levelRender)
+
   return(
-    <SkillContainer>
+    <SkillContainer ref={skillBox}>
       <h3>{skill.name}</h3>
-      <SkillBox ref={skillBox}>
+      <SkillBox>
         <Level
-          levelRender={levelRender}>{skill.level}</Level>
+          level={skill.level} levelRender={levelRender}>{skill.level}</Level>
       </SkillBox>
     </SkillContainer>
   )
