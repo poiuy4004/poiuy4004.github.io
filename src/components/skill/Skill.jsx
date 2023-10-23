@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 
@@ -26,12 +26,12 @@ const Level = styled.p`
   background-color: rgb(200,200,255);
   border-radius: 8px 18px 18px 8px;
   transition: 3s ease-in;
-  ${props=>props.levelValue>2468
+  ${props=>props.levelRender
   ? "transform: translateX(0%);"
   : "transform: translateX(-100%);"
   }
   @media (max-width: 768px) {
-    ${props=>props.levelValue>2345
+    ${props=>props.levelRender
     ? "transform: translateX(0%); !important"
     : "transform: translateX(-100%) !important;"
     }
@@ -39,28 +39,27 @@ const Level = styled.p`
 `
 
 function Skill({skill}){
-  const [levelValue,setLevelValue] = useState(window.scrollY)
-  useEffect(()=>{
-    setInterval(()=>setLevelValue(window.scrollY))
-  })
-  // const intersectionObserver = new IntersectionObserver(nodeList=>{
-  //   nodeList.forEach(node=>{
-  //     if (node.intersectionRatio > 0) {
-  //       node.target.classList.add('renderLevel');
-  //     }
-  //     else {
-  //       node.target.classList.remove('renderLevel');
-  //     }
-  //   })
-  // })
-  // const levelNodeList = document.querySelectorAll(".levelList");
-  // levelNodeList.forEach(levelNode=>intersectionObserver.observe(levelNode));
+  // const [levelValue,setLevelValue] = useState(window.scrollY)
+  const [levelRender,setLevelRender] = useState(false)
+  const skillBox = useRef(null)
+  function levelRenderHandler(){
+    setLevelRender(true)
+  }
+  const observeOptions = {
+    threshold: 1.0
+  }
+  const observber = new IntersectionObserver(levelRenderHandler,observeOptions)
 
+  useEffect(()=>{
+    observber.observe(skillBox.current)
+  },[])
+console.log(levelRender)
   return(
     <SkillContainer>
       <h3>{skill.name}</h3>
-      <SkillBox>
-        <Level level={skill.level} levelValue={levelValue}>{skill.level}</Level>
+      <SkillBox ref={skillBox}>
+        <Level
+          levelRender={levelRender}>{skill.level}</Level>
       </SkillBox>
     </SkillContainer>
   )
