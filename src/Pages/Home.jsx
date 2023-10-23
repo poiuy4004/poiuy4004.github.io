@@ -203,7 +203,7 @@ function Home(){
         <Post id="resumeContainer">
           <h1>
             Resume<br />
-            <a href="https://www.notion.so/_-1d48f0248b894d149e1b12ed04a4d83a?pvs=4" target="_blank" rel="noreferrer">
+            <a href="https://yielding-brick-c96.notion.site/_FE_Developer-aba8940403614692b42001035017a628?pvs=4" target="_blank" rel="noreferrer">
               <Button name="Notion" colorType="black" size="small" />
             </a>
           </h1>
