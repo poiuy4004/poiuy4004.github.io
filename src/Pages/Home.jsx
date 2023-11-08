@@ -28,7 +28,7 @@ const Post = styled.article`
   &>h1{
     margin-bottom: 5%;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     width: 90% !important;
   }
 `
@@ -38,7 +38,7 @@ const OneOnOneBox = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3%;
   align-items: center;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
     &>:nth-child(even){
       margin: 20%;
@@ -49,14 +49,14 @@ const OneOnOneBox = styled.section`
 const ProfileImg = styled.img`
   width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     width: 90%;
   }
 `
 const ResumeImg = styled.img`
   width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     width: 50%;
   }
 `
@@ -72,7 +72,7 @@ const OneOnOneInfo = styled.p`
     flex-direction: column;
     >a{
       margin: 3% 0;
-      @media (max-width: 768px) {
+      @media (max-width: 800px) {
         text-align: center; 
       }
     }
@@ -103,7 +103,7 @@ const MainSkillBox = styled.section`
 const Other = styled.span`
   margin-right: 24px;
   font-size: x-large;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     font-size: xx-small !important;
     margin-right: 3px !important;
   }
@@ -119,7 +119,7 @@ const ProjectContainer = styled.section`
     width: 50%;
     align-self: center;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: block;
     &>*{
       margin: 10% 0;
@@ -131,12 +131,19 @@ function Home(){
 
   return(
     <main>
-      <h1 id="introduceContainer">
-        <div>
-          <div id="introduce1"></div>
-          <div id="introduce2"></div>
-          <div id="introduce3"></div>
-        </div>
+      <h1 id="introduceContainer1">
+        <span>
+          <div >안녕하세요</div>
+          <div >꼰대같은 개발자</div>
+          <div >장용민 입니다</div>
+        </span>
+      </h1>
+      <h1 id="introduceContainer2">
+        <span>
+          <div id="introduce1">안녕하세요</div>
+          <div id="introduce2">꼰대같은 개발자</div>
+          <div id="introduce3">장용민 입니다</div>
+        </span>
       </h1>
 
       <div id="introduceDetailBox">
@@ -154,8 +161,8 @@ function Home(){
         </p>
         <p>
           - LatteTime - <br />
-          '노력은 배신하지 않는다'는 말을 믿습니다.<br />
-          '실패는 성공의 어머니'라는 말을 믿습니다.
+          '노력은 배신하지 않는다'<br />
+          '실패는 성공의 어머니'
         </p>
       </div>
 

@@ -6,28 +6,28 @@ const skills = {
       level: "90%",
     },
     {
+      name: "Vue",
+      level: "65%",
+    },
+    {
+      name: "Next.js",
+      level: "65%",
+    },
+    {
       name: window.innerWidth>768? "Typescript" : "TS",
       level: "80%",
     },
     {
-      name: window.innerWidth>768? "Javascript" : "JS",
-      level: "95%",
-    },
-    {
-      name: "Next.js",
-      level: "60%",
-    },
-    {
       name: "AWS",
-      level: "60%",
+      level: "65%",
     },
     {
       name: "MySQL",
-      level: "30%",
+      level: "40%",
     },
     {
-      name: "git",
-      level: "80%",
+      name: window.innerWidth>768? "Javascript" : "JS",
+      level: "95%",
     },
     {
       name: "HTML",

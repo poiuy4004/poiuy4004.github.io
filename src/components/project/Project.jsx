@@ -25,7 +25,7 @@ const Container = styled.article`
       >h1{
         font-size: 200%;
       }
-      @media (max-width: 768px) {
+      @media (max-width: 800px) {
         min-height: 555px;
       }
     }
@@ -33,7 +33,7 @@ const Container = styled.article`
 `
 const DetailBtn = styled.div`
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     display: block;
   }
 `

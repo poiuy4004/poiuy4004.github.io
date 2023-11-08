@@ -24,7 +24,7 @@ button{
   background-repeat: no-repeat;
 }
 
-@media(max-width: 768px){
+@media(max-width: 800px){
   *{
     font-size: small !important;
   }
