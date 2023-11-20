@@ -1,9 +1,11 @@
+import { useState } from "react";
 
 import styled from "styled-components";
 
 import profileImg from "../assets/profile.jpg"
 import resumeImg from "../assets/resume.png";
 
+import Modal from "../components/Modal";
 import Button from "../components/Button";
 import skills from "../assets/skills";
 import Skill from "../components/skill/Skill";
@@ -28,7 +30,7 @@ const Post = styled.article`
   &>h1{
     margin-bottom: 5%;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     width: 90% !important;
   }
 `
@@ -38,7 +40,7 @@ const OneOnOneBox = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 3%;
   align-items: center;
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     grid-template-columns: 1fr;
     &>:nth-child(even){
       margin: 20%;
@@ -49,14 +51,14 @@ const OneOnOneBox = styled.section`
 const ProfileImg = styled.img`
   width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     width: 90%;
   }
 `
 const ResumeImg = styled.img`
   width: 80%;
   box-shadow: 0px 3px 10px 5px rgb(150,200,255,0.3);
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     width: 50%;
   }
 `
@@ -72,7 +74,7 @@ const OneOnOneInfo = styled.p`
     flex-direction: column;
     >a{
       margin: 3% 0;
-      @media (max-width: 800px) {
+      @media (max-width: 800px),(max-height: 888px) {
         text-align: center; 
       }
     }
@@ -100,10 +102,21 @@ const MainSkillBox = styled.section`
   margin-top: -3%;
 `
 
+const OtherContainer = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+`
+const OtherBox = styled.section`
+  text-align: left;
+`
 const Other = styled.span`
-  margin-right: 24px;
-  font-size: x-large;
-  @media (max-width: 800px) {
+  margin-right: 14px;
+  padding: 4px 12px;
+  color: blueviolet;
+  font-size: large;
+  border: solid 1px purple;
+  border-radius: 20px;
+  @media (max-width: 800px),(max-height: 888px) {
     font-size: xx-small !important;
     margin-right: 3px !important;
   }
@@ -119,7 +132,7 @@ const ProjectContainer = styled.section`
     width: 50%;
     align-self: center;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     display: block;
     &>*{
       margin: 10% 0;
@@ -128,6 +141,9 @@ const ProjectContainer = styled.section`
 `
 
 function Home(){
+
+  const [isOpen,setIsOpen] = useState(false)
+  const [isModal,setIsModal] = useState({})
 
   return(
     <main>
@@ -293,10 +309,12 @@ function Home(){
               <Skill skill={skill} />
             )}
           </MainSkillBox>
-          <h2>Other</h2>
-          <section>
-            {skills.others.map(other=><Other>{other}</Other>)}
-          </section>
+          <OtherContainer>
+            <h3>Other</h3>
+            <OtherBox>
+              {skills.others.map(other=><Other>{other}</Other>)}
+            </OtherBox>
+          </OtherContainer>
         </Post>
         <Post id="projectContainer">
           <h1>
@@ -304,8 +322,12 @@ function Home(){
           </h1>
           <ProjectContainer>
             {projects.map(project=>(
-              <Project project={project} />
+              <Project project={project} setIsOpen={setIsOpen} isModal={isModal} setIsModal={setIsModal} />
             ))}
+            {isOpen
+            ? <Modal value={isModal} setIsOpen={setIsOpen} />
+            : null}
+            {console.log(isModal)}
           </ProjectContainer>
         </Post>
       </Container>

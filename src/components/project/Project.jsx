@@ -25,7 +25,7 @@ const Container = styled.article`
       >h1{
         font-size: 200%;
       }
-      @media (max-width: 800px) {
+      @media (max-width: 800px),(max-height: 888px) {
         min-height: 555px;
       }
     }
@@ -33,7 +33,7 @@ const Container = styled.article`
 `
 const DetailBtn = styled.div`
   display: none;
-  @media (max-width: 800px) {
+  @media (max-width: 800px),(max-height: 888px) {
     display: block;
   }
 `
@@ -45,18 +45,42 @@ const Detail = styled.section`
 `
 
 const Description = styled.div`
-  white-space: pre-line;
   margin-bottom: 5%;
 `
-
+const DetailButton = styled.button`
+  background-color: rgba(255,255,255,0.9);
+  padding: 1%;
+  border-radius: 20px;
+  &:active{
+    color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  &:hover{
+    background-color: rgb(255, 255, 255);
+  }
+`
 const ButtonBox = styled.div`
+  margin-bottom: 2%;
   &>a{
     color: white;
   }
 `
 
-function Project({project}){
+function Project({project,setIsOpen,isModal,setIsModal}){
   const [detailOpen,setDetailOpen] = useState(false)
+
+  function detailButtonEvent(){
+    setIsOpen(true)
+    setIsModal({
+      head: project.title,
+      main: project.detailDescription,
+      img: project.mainImg,
+      github: project.github,
+      demo: project.demo,
+      part: project.part,
+      stack: project.stack,
+    })
+  }
   return(
     <Container backgroundImg={project.mainImg} open={detailOpen}>
       <DetailBtn onClick={()=>setDetailOpen(!detailOpen)}><Button name={detailOpen? "상세설명 닫기" : "상세설명 보기"} colorType="black" /></DetailBtn>
@@ -66,6 +90,11 @@ function Project({project}){
           <Description>
             {project.description}
           </Description>
+          <ButtonBox>
+            <DetailButton onClick={detailButtonEvent}>
+              자세히 보기
+            </DetailButton>
+          </ButtonBox>
           <ButtonBox>
             <a href={project.github} target="_blank" rel="noreferrer">
               <Button name="github" colorType="blue" />

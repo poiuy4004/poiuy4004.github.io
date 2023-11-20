@@ -8,7 +8,8 @@ html{
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  font-family: 'Karla', sans-serif
+  font-family: 'Karla', sans-serif;
+  white-space: pre-line;
 }
 a{
   text-decoration: none
@@ -24,7 +25,7 @@ button{
   background-repeat: no-repeat;
 }
 
-@media(max-width: 800px){
+@media(max-width: 800px),(max-height: 888px){
   *{
     font-size: small !important;
   }

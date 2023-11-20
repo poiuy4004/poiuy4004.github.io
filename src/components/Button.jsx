@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 const ButtonContainer = styled.button`
-  padding: 1%;
+  padding: 5px 10px;
   border-radius: 20px;
   &:active{
     color: rgba(255, 0, 0, 0.5);
@@ -19,6 +19,9 @@ const ButtonContainer = styled.button`
     else if(props.colorType==="black"){
       return "color: white; background-color: black; &:hover{background-color: rgb(100,100,100);}"
     }
+    else if(props.colorType==="white"){
+      return "background-color: rgba(255,255,255,0.9); &:hover{background-color: rgb(255, 255, 255);}"
+    }
   }}
   ${props=>{
     if(props.size==="small"){
@@ -29,9 +32,9 @@ const ButtonContainer = styled.button`
 
 
 
-function Button({name,colorType,size}){
+function Button({name,colorType,size,event}){
   return(
-    <ButtonContainer colorType={colorType} size={size}>
+    <ButtonContainer colorType={colorType} size={size} event>
       {name}
     </ButtonContainer>
   )

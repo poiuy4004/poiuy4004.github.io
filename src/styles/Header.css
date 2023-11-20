@@ -140,7 +140,7 @@ header #hammenuToggle input:checked~ul{
 }
 
 
-@media (max-width: 800px){
+@media (max-width: 800px),(max-height: 888px){
   header{
     margin-bottom: 37%;
   }

@@ -33,7 +33,7 @@
     transform: rotate(-0.1turn);
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 800px),(max-height: 888px) {
   #sidebarOpener{
     display: none;
   }

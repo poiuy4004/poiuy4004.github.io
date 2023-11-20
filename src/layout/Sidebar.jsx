@@ -14,11 +14,10 @@ function Sidebar(){
     <SidebarNav id="sidebarNav">
       <img src={dragon} alt="YongMin's Character" />
       <div id="info">
-        <h3>YongMin's Portfolio</h3>
         <h4><i>
-          안녕하세요.<br />
-          꼰대같은 개발자<br />
-          '장용민' 입니다.<br />
+          Hello !<br />
+          I'm Frontend Developer<br />
+          Yong-Min, Jang<br />
         </i></h4>
       </div>
       <div id="social">
