@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Container = styled.article`
   min-height: 625px;
+  padding: 3%;
   ${props=>props.open
   ? "background: rgba(0,0,0,0.8);"
   : "box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5); background: center 0 / cover no-repeat url("+props.backgroundImg+");"
@@ -31,15 +32,9 @@ const Container = styled.article`
     }
   }
 `
-const DetailBtn = styled.div`
-  display: none;
-  @media (max-width: 800px),(max-height: 888px) {
-    display: block;
-  }
-`
 const Detail = styled.section`
   ${props=>props.open
-  ? "display: flex; flex-direction: column; justify-content: space-evenly; margin: 3%; padding: 3%; background-color: rgba(0,0,0,0.8); min-height: 555px; color: rgb(100,200,255); border: solid 1px rgb(100,200,255); >h1{font-size: 200%;}"
+  ? "display: flex; flex-direction: column; justify-content: space-evenly; padding: 3%; background-color: rgba(0,0,0,0.8); min-height: 555px; color: rgb(100,200,255); border: solid 1px rgb(100,200,255); >h1{font-size: 200%;}"
   : "display: none;"
   }
 `
@@ -66,7 +61,7 @@ const ButtonBox = styled.div`
   }
 `
 
-function Project({project,setIsOpen,isModal,setIsModal}){
+function Project({project,setIsOpen,setIsModal}){
   const [detailOpen,setDetailOpen] = useState(false)
 
   function detailButtonEvent(){
@@ -83,7 +78,6 @@ function Project({project,setIsOpen,isModal,setIsModal}){
   }
   return(
     <Container backgroundImg={project.mainImg} open={detailOpen}>
-      <DetailBtn onClick={()=>setDetailOpen(!detailOpen)}><Button name={detailOpen? "상세설명 닫기" : "상세설명 보기"} colorType="black" /></DetailBtn>
       <Detail open={detailOpen}>
         <h1>{project.title}</h1>
         <p>

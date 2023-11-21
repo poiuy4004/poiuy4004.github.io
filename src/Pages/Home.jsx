@@ -107,15 +107,19 @@ const OtherContainer = styled.section`
   grid-template-columns: 1fr 6fr;
 `
 const OtherBox = styled.section`
+  display: flex;
   text-align: left;
+  flex-wrap: wrap;
 `
 const Other = styled.span`
   margin-right: 14px;
-  padding: 4px 12px;
+  margin-bottom: 3px;
+  padding: 2px 8px;
   color: blueviolet;
   font-size: large;
-  border: solid 1px purple;
+  border: solid 1px gray;
   border-radius: 20px;
+  white-space: nowrap;
   @media (max-width: 800px),(max-height: 888px) {
     font-size: xx-small !important;
     margin-right: 3px !important;
@@ -322,7 +326,7 @@ function Home(){
           </h1>
           <ProjectContainer>
             {projects.map(project=>(
-              <Project project={project} setIsOpen={setIsOpen} isModal={isModal} setIsModal={setIsModal} />
+              <Project project={project} setIsOpen={setIsOpen} setIsModal={setIsModal} />
             ))}
             {isOpen
             ? <Modal value={isModal} setIsOpen={setIsOpen} />

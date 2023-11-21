@@ -41,6 +41,10 @@ const ModalBox = styled.div`
   &>:nth-child(2){
     padding-left: 20%;
   }
+  @media (max-width: 800px),(max-height: 888px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 const Content = styled.div`
   display: flex;

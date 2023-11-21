@@ -55,7 +55,7 @@ const projects = [
     title: "Golden City",
     mainImg: goldenCityImage,
     description: "역사의 중심, 경주!\n\n혹시 지금\n경주여행을\n준비중이신가요?\n\n금빛도시 경주",
-    detailDescription: "공공데이터포털(https://www.data.go.kr/)을\n사용해보기 위해,\n경주관광정보를 활용한\n간단한 여행팁 입니다.",
+    detailDescription: "공공데이터포털(https://www.data.go.kr/)을\n사용해보기 위해,\n경주관광정보를 활용한\n간단한 여행팁을 제작했습니다.",
     stack: ["React", "Axios", "Styled-components"],
     part: "솔로 프로젝트 (1인 개발)",
     github: "https://github.com/poiuy4004/goldencity",
