@@ -6,7 +6,7 @@ const skills = {
       level: "95%",
     },
     {
-      name: "React-Native",
+      name: window.innerWidth>1414? "React-Native" : "RN",
       level: "95%",
     },
     {
@@ -46,6 +46,6 @@ const skills = {
       level: "85%",
     },
   ],
-  others: ["github","Figma","Postman","OAuth","StoryBook","Photoshop","PremierePro"]
+  others: ["Github","Figma","Postman","OAuth","StoryBook","Photoshop","PremierePro"]
 }
 export default skills;

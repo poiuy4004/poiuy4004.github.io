@@ -91,7 +91,7 @@ function Project({project,setIsOpen,setIsModal}){
           </ButtonBox>
           <ButtonBox>
             <a href={project.github} target="_blank" rel="noreferrer">
-              <Button name="github" colorType="blue" />
+              <Button name="Github" colorType="blue" />
             </a>
             <a href={project.demo} target="_blank" rel="noreferrer">
               <Button name="Demo" colorType="orange" />

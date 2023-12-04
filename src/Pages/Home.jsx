@@ -113,7 +113,7 @@ const OtherBox = styled.section`
 `
 const Other = styled.span`
   margin-right: 14px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   padding: 2px 8px;
   color: blueviolet;
   font-size: large;
@@ -301,7 +301,7 @@ function Home(){
           <h1>
             SkillStack<br />
             <a href="https://github.com/poiuy4004/SkillBox" target="_blank" rel="noreferrer">
-              <Button name="github" colorType="black" size="small" />
+              <Button name="Github" colorType="black" size="small" />
             </a>
             <a href="https://poiuy4004.github.io/SkillBox/" target="_blank" rel="noreferrer">
               <Button name="Demo" colorType="orange" size="small" />
