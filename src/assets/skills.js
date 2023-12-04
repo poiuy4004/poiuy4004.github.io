@@ -3,31 +3,39 @@ const skills = {
   main: [
     {
       name: "React",
-      level: "90%",
+      level: "95%",
     },
     {
-      name: "Vue",
-      level: "65%",
+      name: "React-Native",
+      level: "95%",
     },
     {
       name: "Next.js",
-      level: "65%",
+      level: "85%",
+    },
+    {
+      name: "Flutter",
+      level: "85%",
+    },
+    {
+      name: "Vue",
+      level: "85%",
     },
     {
       name: window.innerWidth>768? "Typescript" : "TS",
-      level: "80%",
+      level: "85%",
     },
     {
       name: "AWS",
-      level: "65%",
+      level: "80%",
     },
     {
       name: "MySQL",
-      level: "40%",
+      level: "45%",
     },
     {
       name: window.innerWidth>768? "Javascript" : "JS",
-      level: "95%",
+      level: "90%",
     },
     {
       name: "HTML",
