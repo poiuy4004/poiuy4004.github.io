@@ -1,6 +1,6 @@
 html{
   scroll-behavior: smooth;
-  cursor: url(../../public/favicon.ico), auto;
+  cursor: url(../../public/cursor.ico), auto;
 }
 *{
   -webkit-box-sizing: border-box;

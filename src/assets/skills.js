@@ -30,10 +30,6 @@ const skills = {
       level: "80%",
     },
     {
-      name: "MySQL",
-      level: "45%",
-    },
-    {
       name: window.innerWidth>768? "Javascript" : "JS",
       level: "90%",
     },
@@ -43,9 +39,13 @@ const skills = {
     },
     {
       name: "CSS",
-      level: "85%",
+      level: "95%",
+    },
+    {
+      name: "MySQL",
+      level: "50%",
     },
   ],
-  others: ["Github","Figma","Postman","OAuth","StoryBook","Photoshop","PremierePro"]
+  others: ["Github","Figma","Postman","OAuth","CI/CD","StoryBook","Photoshop","PremierePro"]
 }
 export default skills;
