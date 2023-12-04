@@ -115,6 +115,7 @@ header #hammenuToggle input:checked~span:nth-last-child(2){
 }
 
 header #menu{
+  display: none;
   position: fixed;
   width: 300px;
   margin: 10px 0 200px -135px;
