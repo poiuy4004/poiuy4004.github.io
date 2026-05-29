@@ -7,11 +7,11 @@ const STORAGE_KEY = "theme-preference";
 const listeners = new Set<() => void>();
 
 function readStored(): ThemePreference {
-  if (typeof window === "undefined") return "system";
+  if (typeof window === "undefined") return "dark";
   const saved = window.localStorage.getItem(STORAGE_KEY);
   return saved === "light" || saved === "dark" || saved === "system"
     ? saved
-    : "system";
+    : "dark";
 }
 
 function prefersDark(): boolean {
@@ -51,7 +51,7 @@ export function useTheme() {
   const preference = useSyncExternalStore(
     subscribe,
     readStored,
-    () => "system" as ThemePreference,
+    () => "dark" as ThemePreference,
   );
   return { preference, setPreference: setThemePreference };
 }
