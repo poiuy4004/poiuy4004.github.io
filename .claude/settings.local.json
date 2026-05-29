@@ -22,7 +22,26 @@
       "Bash(git check-ignore *)",
       "Bash(git commit *)",
       "Bash(git add *)",
-      "Bash(echo \"=== commit exit: $? ===\")"
+      "Bash(echo \"=== commit exit: $? ===\")",
+      "Bash(git push *)",
+      "Bash(echo \"=== push exit: $? ===\")",
+      "Bash(gh auth *)",
+      "Bash(gh api *)",
+      "PowerShell(Get-Command *)",
+      "Bash(echo \"=== commit: $? ===\")",
+      "Bash(echo \"=== push: $? ===\")",
+      "PowerShell(npm run *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:5173/\" -UseBasicParsing -TimeoutSec 5; \"5173 OK $\\($r.StatusCode\\)\" } catch { \"5173 fail\" }; try { $r = Invoke-WebRequest -Uri \"http://localhost:5174/\" -UseBasicParsing -TimeoutSec 3; \"5174 OK $\\($r.StatusCode\\)\" } catch { \"5174 fail\" })",
+      "PowerShell($edge = \"${env:ProgramFiles\\(x86\\)}\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\"; $dom = & $edge --headless=new --disable-gpu --virtual-time-budget=3000 --dump-dom \"http://localhost:5173/\" 2>$null; if \\($dom -match \"누굴 만나러\"\\) { \"TITLE PRESENT\" } else { \"TITLE MISSING\" }; if \\($dom -match \"보러가기\"\\) { \"BUTTON PRESENT\" } else { \"BUTTON MISSING\" }; if \\($dom -match \"Welcome\"\\) { \"WELCOME PRESENT\" } else { \"WELCOME MISSING\" })",
+      "PowerShell(Out-Null *)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-shot.ps1\" -Out \"$env:TEMP\\\\home-cdp.png\" -DelayMs 4000)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-shot.ps1\" -Out \"$env:TEMP\\\\home-cdp2.png\" -DelayMs 4500)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-shot2.ps1\" -Out \"$env:TEMP\\\\home-typed.png\" -DelayMs 600 -TypeText \"장용민\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-shot2.ps1\" -Out \"$env:TEMP\\\\home-ignite.png\" -DelayMs 350 -TypeText \"장용민\" -Submit)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-shot2.ps1\" -Out \"$env:TEMP\\\\home-light.png\" -DelayMs 3000 -ThemeLight)",
+      "PowerShell(Get-CimInstance *)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \".tmp-cursor.ps1\")"
     ]
   }
 }

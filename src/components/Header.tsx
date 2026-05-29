@@ -24,7 +24,8 @@ export default function Header() {
       rafRef.current = 0;
     };
     const onScroll = () => {
-      if (!rafRef.current) rafRef.current = window.requestAnimationFrame(update);
+      if (!rafRef.current)
+        rafRef.current = window.requestAnimationFrame(update);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -46,7 +47,7 @@ export default function Header() {
           href="#intro"
           className="text-sm font-semibold tracking-tight text-neutral-900 dark:text-neutral-100"
         >
-          ymjang<span className="text-purple-500">.dev</span>
+          Code<span className="text-purple-500">.Min</span>
         </a>
 
         <div className="flex items-center gap-5">

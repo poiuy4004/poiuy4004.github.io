@@ -1,4 +1,10 @@
-import { useMemo, useRef, useState, type FormEvent } from "react";
+import {
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
 
 type NameGateFormProps = {
   expectedName: string;
@@ -9,6 +15,7 @@ type NameGateFormProps = {
 };
 
 const RIPPLE_THROTTLE_MS = 50;
+const MAGNET_STRENGTH = 0.3; // how strongly the button leans toward the cursor
 
 export default function NameGateForm({
   expectedName,
@@ -22,11 +29,24 @@ export default function NameGateForm({
   const [rippleId, setRippleId] = useState(0);
   const lastRippleAtRef = useRef(0);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const magnetRafRef = useRef(0);
 
   const matched = useMemo(
     () => value.trim() === expectedName,
     [value, expectedName],
   );
+
+  // how far the typed value matches the expected name as a leading prefix (0–1)
+  const progress = useMemo(() => {
+    const v = value.trim();
+    if (v === "") return 0;
+    let i = 0;
+    while (i < v.length && i < expectedName.length && v[i] === expectedName[i]) {
+      i++;
+    }
+    return Math.min(i / expectedName.length, 1);
+  }, [value, expectedName]);
+
   const rendered = value.trim() === "" ? `OOO` : value;
 
   const handleChange = (next: string) => {
@@ -54,6 +74,36 @@ export default function NameGateForm({
     }
   };
 
+  const handleButtonMove = (e: ReactMouseEvent<HTMLButtonElement>) => {
+    const btn = buttonRef.current;
+    if (!btn || igniting) return;
+    const rect = btn.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    if (!magnetRafRef.current) {
+      magnetRafRef.current = window.requestAnimationFrame(() => {
+        const dx = (mx - rect.width / 2) * MAGNET_STRENGTH;
+        const dy = (my - rect.height / 2) * MAGNET_STRENGTH;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        btn.style.setProperty("--mx", `${mx}px`);
+        btn.style.setProperty("--my", `${my}px`);
+        btn.style.setProperty("--spot", "1");
+        magnetRafRef.current = 0;
+      });
+    }
+  };
+
+  const handleButtonLeave = () => {
+    const btn = buttonRef.current;
+    if (!btn) return;
+    if (magnetRafRef.current) {
+      window.cancelAnimationFrame(magnetRafRef.current);
+      magnetRafRef.current = 0;
+    }
+    btn.style.transform = "";
+    btn.style.setProperty("--spot", "0");
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -62,7 +112,15 @@ export default function NameGateForm({
       <label className="sr-only" htmlFor="owner-name">
         포트폴리오 주인의 이름
       </label>
-      <div className="relative overflow-hidden rounded-xl">
+      <div
+        className="relative overflow-hidden rounded-xl transition-shadow duration-300"
+        style={{
+          boxShadow:
+            progress > 0
+              ? `0 0 ${8 + progress * 28}px rgba(168,85,247,${0.15 + progress * 0.5})`
+              : undefined,
+        }}
+      >
         <input
           id="owner-name"
           type="text"
@@ -72,6 +130,12 @@ export default function NameGateForm({
           autoComplete="off"
           disabled={igniting}
           className="w-full rounded-xl border border-neutral-300 bg-white/60 px-5 py-3 text-center text-lg text-neutral-900 outline-none transition focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 disabled:opacity-60 dark:border-neutral-700 dark:bg-neutral-900/60 dark:text-neutral-100"
+        />
+        {/* energy fill that rises from the bottom as the name matches */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 origin-bottom bg-gradient-to-t from-purple-500/25 to-transparent transition-[height] duration-300"
+          style={{ height: `${progress * 100}%` }}
         />
         {rippleId > 0 && (
           <span
@@ -85,9 +149,11 @@ export default function NameGateForm({
         ref={buttonRef}
         type="submit"
         disabled={igniting || value.trim() === ""}
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-purple-400/50 bg-purple-500/10 px-6 py-3 text-lg font-medium text-purple-700 transition hover:enabled:bg-purple-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:text-purple-300"
+        onMouseMove={handleButtonMove}
+        onMouseLeave={handleButtonLeave}
+        className="group btn-spotlight relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-purple-400/50 bg-purple-500/10 px-6 py-3 text-lg font-medium text-purple-700 transition-[background-color,transform] duration-200 hover:enabled:bg-purple-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:text-purple-300"
       >
-        <span>
+        <span className="relative z-10">
           <span
             className={
               matched
@@ -109,7 +175,7 @@ export default function NameGateForm({
         </span>
         <span
           aria-hidden
-          className="transition-transform group-hover:enabled:translate-x-0.5"
+          className="relative z-10 transition-transform group-hover:enabled:translate-x-0.5"
         >
           →
         </span>

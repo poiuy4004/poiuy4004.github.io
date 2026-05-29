@@ -79,6 +79,17 @@ p {
   margin: 0;
 }
 
+/* Tailwind v4 preflight no longer sets a pointer cursor on buttons.
+   Restore the expected affordance for interactive controls site-wide;
+   disabled controls keep their own cursor (e.g. cursor-not-allowed). */
+@layer base {
+  button:not(:disabled),
+  summary,
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
 /* ====================================================
    Home gate cinematic interactions
    ==================================================== */
@@ -97,19 +108,32 @@ p {
   50% { transform: translate(40px, 30px) rotate(4deg); }
 }
 
-/* Particle floats upward with subtle x sway */
-@keyframes particle-float {
-  0%   { transform: translate(0, 0); opacity: 0; }
-  10%  { opacity: 0.4; }
-  50%  { transform: translate(12px, -40vh); }
-  90%  { opacity: 0.4; }
-  100% { transform: translate(-8px, -90vh); opacity: 0; }
+/* Title per-character reveal (rise + fade + slight blur) */
+@keyframes char-rise {
+  from { opacity: 0; transform: translateY(0.9em) rotate(6deg); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0) rotate(0deg); filter: blur(0); }
 }
 
-/* Title text mask reveal */
-@keyframes mask-reveal {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+/* Aurora gradient sweep across the title */
+@keyframes aurora-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Success shockwave ring */
+@keyframes shockwave {
+  0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(14); opacity: 0; }
+}
+
+/* Error glitch (RGB split + jitter) */
+@keyframes glitch {
+  0%, 100% { transform: translate(0, 0); text-shadow: none; }
+  20% { transform: translate(-2px, 1px); text-shadow: 2px 0 rgba(239,68,68,0.7), -2px 0 rgba(59,130,246,0.7); }
+  40% { transform: translate(2px, -1px); text-shadow: -2px 0 rgba(239,68,68,0.7), 2px 0 rgba(59,130,246,0.7); }
+  60% { transform: translate(-1px, 0); text-shadow: 1px 0 rgba(239,68,68,0.7), -1px 0 rgba(59,130,246,0.7); }
+  80% { transform: translate(1px, 1px); text-shadow: none; }
 }
 
 /* Generic fade + slide-up for entrance */
@@ -156,7 +180,8 @@ p {
 
 /* Utility classes */
 .animate-rise          { animation: rise 600ms cubic-bezier(0.25, 0.4, 0.25, 1) forwards; opacity: 0; }
-.animate-mask-reveal   { animation: mask-reveal 700ms cubic-bezier(0.25, 0.4, 0.25, 1) forwards; }
+.animate-shockwave     { animation: shockwave 800ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards; }
+.animate-glitch        { animation: glitch 400ms steps(2, end) 2; }
 .animate-ripple        { animation: ripple 800ms ease-out forwards; }
 .animate-shake         { animation: shake 400ms ease-out; }
 .animate-vignette-flash{ animation: vignette-flash 680ms ease-out forwards; }
@@ -165,22 +190,59 @@ p {
 .animate-mesh-1        { animation: mesh-drift-1 18s ease-in-out infinite; }
 .animate-mesh-2        { animation: mesh-drift-2 22s ease-in-out infinite; }
 .animate-mesh-3        { animation: mesh-drift-3 26s ease-in-out infinite; }
-.animate-particle      { animation: particle-float linear infinite; }
+
+/* Aurora gradient title — gradient clipped to each character so per-char
+   transforms/filters don't break the text clip. Combines the entrance
+   reveal (char-rise) with an infinite gradient sweep (aurora-shift). */
+.aurora-char {
+  background-image: linear-gradient(
+    100deg,
+    var(--text-h) 0%,
+    #a855f7 25%,
+    #6366f1 40%,
+    #ec4899 55%,
+    var(--text-h) 80%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    char-rise 650ms cubic-bezier(0.25, 0.4, 0.25, 1) both,
+    aurora-shift 6s ease-in-out infinite;
+}
+
+/* Magnetic button cursor spotlight */
+.btn-spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    180px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(168, 85, 247, 0.35),
+    transparent 60%
+  );
+  opacity: var(--spot, 0);
+  transition: opacity 200ms ease-out;
+  pointer-events: none;
+}
 
 /* Reduced motion overrides */
 @media (prefers-reduced-motion: reduce) {
   .animate-rise,
-  .animate-mask-reveal,
   .animate-fade-in {
     animation: fade-in 200ms ease-out forwards;
   }
+  .aurora-char { animation: none; }
   .animate-ripple,
   .animate-shake,
+  .animate-glitch,
+  .animate-shockwave,
   .animate-vignette-flash,
   .animate-mesh-1,
   .animate-mesh-2,
   .animate-mesh-3,
-  .animate-particle,
   .animate-ignite-bloom {
     animation: none;
   }

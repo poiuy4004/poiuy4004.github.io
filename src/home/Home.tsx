@@ -4,6 +4,8 @@ import ThemeToggle from "../main/components/ThemeToggle";
 import { openGate } from "../main/auth/gate";
 import { profile } from "../main/data/profile";
 import { usePageMeta } from "../main/hooks/usePageMeta";
+import { usePointerTilt } from "../main/hooks/usePointerTilt";
+import ConstellationCanvas from "./ConstellationCanvas";
 import IgniteOverlay from "./IgniteOverlay";
 import MeshBackground from "./MeshBackground";
 import MouseGlow from "./MouseGlow";
@@ -13,6 +15,9 @@ type Phase = "entering" | "idle" | "error" | "igniting" | "transitioning";
 
 const ERROR_RESET_MS = 1200;
 const IGNITE_TO_NAVIGATE_MS = 1000;
+const TITLE = "누굴 만나러 오셨나요?";
+const TITLE_BASE_DELAY = 350;
+const TITLE_CHAR_STEP = 45;
 
 export default function Home() {
   usePageMeta({
@@ -31,6 +36,8 @@ export default function Home() {
   } | null>(null);
   const errorTimeoutRef = useRef<number | null>(null);
   const igniteTimeoutsRef = useRef<number[]>([]);
+  const { enabled: tiltEnabled, ref: tiltRef, handlers: tiltHandlers } =
+    usePointerTilt(5);
 
   useEffect(() => {
     const t = window.setTimeout(() => setPhase("idle"), 1000);
@@ -75,9 +82,12 @@ export default function Home() {
     igniteTimeoutsRef.current.push(t);
   };
 
+  const igniting = phase === "igniting" || phase === "transitioning";
+
   return (
     <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-20">
       <MeshBackground />
+      <ConstellationCanvas />
       <MouseGlow />
       <div className="absolute right-6 top-6 z-40">
         <ThemeToggle size="sm" />
@@ -95,28 +105,44 @@ export default function Home() {
         />
       )}
 
-      {(phase === "igniting" || phase === "transitioning") && igniteOrigin && (
-        <IgniteOverlay originX={igniteOrigin.x} originY={igniteOrigin.y} />
+      {igniting && igniteOrigin && (
+        <>
+          <IgniteOverlay originX={igniteOrigin.x} originY={igniteOrigin.y} />
+          <span
+            aria-hidden
+            className="pointer-events-none fixed z-40 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-purple-300 animate-shockwave"
+            style={{ left: igniteOrigin.x, top: igniteOrigin.y }}
+          />
+        </>
       )}
 
-      <div className="relative z-20 w-full max-w-xl text-center">
+      <div
+        ref={tiltEnabled ? (tiltRef as React.Ref<HTMLDivElement & HTMLElement>) : undefined}
+        {...(tiltEnabled ? tiltHandlers : {})}
+        className="relative z-20 w-full max-w-xl text-center [transform-style:preserve-3d] [transition:transform_400ms_cubic-bezier(0.25,0.4,0.25,1)]"
+      >
         <p
           className="mb-4 text-sm uppercase tracking-[0.3em] text-neutral-400 animate-rise dark:text-neutral-500"
           style={{ animationDelay: "200ms" }}
         >
           Welcome
         </p>
-        <h1 className="!mt-0 !mb-2 !text-4xl md:!text-5xl">
-          <span
-            className="inline-block overflow-hidden align-bottom"
-            style={{ paddingBottom: "0.15em" }}
-          >
-            <span
-              className="inline-block animate-mask-reveal"
-              style={{ animationDelay: "350ms", transform: "translateY(100%)" }}
-            >
-              누굴 만나러 오셨나요?
-            </span>
+        <h1
+          className={`!mt-0 !mb-2 !text-4xl md:!text-5xl ${phase === "error" ? "animate-glitch" : ""}`}
+        >
+          <span className="inline-block align-bottom" style={{ paddingBottom: "0.15em" }}>
+            {TITLE.split("").map((ch, i) => (
+              <span
+                key={i}
+                className="aurora-char inline-block"
+                style={{
+                  animationDelay: `${TITLE_BASE_DELAY + i * TITLE_CHAR_STEP}ms`,
+                  whiteSpace: ch === " " ? "pre" : undefined,
+                }}
+              >
+                {ch}
+              </span>
+            ))}
           </span>
         </h1>
         <p
@@ -129,7 +155,7 @@ export default function Home() {
           <NameGateForm
             expectedName={profile.name}
             shake={phase === "error"}
-            igniting={phase === "igniting" || phase === "transitioning"}
+            igniting={igniting}
             onMatch={handleMatch}
             onWrong={handleWrong}
           />
