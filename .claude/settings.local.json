@@ -6,7 +6,20 @@
       "Bash(echo \"exit=$?\")",
       "Bash(echo \"tsc-exit=$?\")",
       "Bash(echo \"tsc=$?\")",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(npx eslint *)",
+      "Bash(echo \"=== TSC exit: $? ===\")",
+      "Bash(echo \"=== ESLINT exit: $? ===\")",
+      "Bash(echo \"=== exit: $? ===\")",
+      "Bash(npm run *)",
+      "mcp__playwright__browser_navigate",
+      "Bash(node *)",
+      "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx -y playwright@latest install-deps)",
+      "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 node scripts/verify-home.mjs)",
+      "Bash(export NODE_PATH=\"C:/Users/why/AppData/Local/npm-cache/_npx/705bc6b22212b352/node_modules\")",
+      "Bash(echo \"=== TSC: $? ===\")",
+      "Bash(echo \"=== ESLINT: $? ===\")",
+      "Bash(git check-ignore *)"
     ]
   }
 }

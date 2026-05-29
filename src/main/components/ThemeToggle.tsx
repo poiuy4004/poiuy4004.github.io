@@ -29,7 +29,7 @@ export default function ThemeToggle({ size = "md" }: ThemeToggleProps) {
             onClick={() => setPreference(opt.value)}
             aria-pressed={active}
             title={opt.label}
-            className={`flex items-center justify-center rounded-full transition ${btn} ${
+            className={`flex items-center justify-center rounded-full transition-all duration-300 motion-reduce:transition-none ${btn} ${
               active
                 ? "bg-white text-purple-600 shadow-sm dark:bg-neutral-700 dark:text-purple-300"
                 : "text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-100"

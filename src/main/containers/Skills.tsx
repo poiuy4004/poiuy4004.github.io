@@ -1,4 +1,5 @@
 import Card from "../components/Card";
+import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import SkillBadge from "../components/SkillBadge";
 import { skillGroups } from "../data/skills";
@@ -12,9 +13,9 @@ export default function Skills() {
       description="도구는 목적이 아니라 수단이라고 생각합니다. 그래도 충분히 익숙해진 도구들이 있어요."
     >
       <ul className="grid gap-5 md:grid-cols-2">
-        {skillGroups.map((group) => (
-          <li key={group.title}>
-            <Card className="h-full">
+        {skillGroups.map((group, idx) => (
+          <Reveal as="li" key={group.title} delay={idx * 80}>
+            <Card tilt className="h-full">
               <header className="mb-4">
                 <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
                   {group.title}
@@ -33,7 +34,7 @@ export default function Skills() {
                 ))}
               </ul>
             </Card>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>

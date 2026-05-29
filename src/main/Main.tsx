@@ -1,5 +1,7 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import BackToTop from "./components/BackToTop";
+import ScrollProgress from "./components/ScrollProgress";
 import About from "./containers/About";
 import Career from "./containers/Career";
 import Contact from "./containers/Contact";
@@ -18,7 +20,8 @@ export default function Main() {
   });
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col bg-white text-left dark:bg-neutral-950">
+    <div className="flex min-h-screen flex-1 flex-col bg-white text-left animate-fade-in dark:bg-neutral-950">
+      <ScrollProgress />
       <Header />
       <main className="flex-1">
         <Intro />
@@ -30,6 +33,7 @@ export default function Main() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

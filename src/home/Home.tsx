@@ -1,10 +1,18 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { openGate } from "../main/auth/gate";
 import ThemeToggle from "../main/components/ThemeToggle";
+import { openGate } from "../main/auth/gate";
+import { profile } from "../main/data/profile";
 import { usePageMeta } from "../main/hooks/usePageMeta";
+import IgniteOverlay from "./IgniteOverlay";
+import MeshBackground from "./MeshBackground";
+import MouseGlow from "./MouseGlow";
+import NameGateForm from "./NameGateForm";
 
-const OWNER_NAME = "장용민";
+type Phase = "entering" | "idle" | "error" | "igniting" | "transitioning";
+
+const ERROR_RESET_MS = 1200;
+const IGNITE_TO_NAVIGATE_MS = 1000;
 
 export default function Home() {
   usePageMeta({
@@ -15,94 +23,117 @@ export default function Home() {
   });
 
   const navigate = useNavigate();
-  const [value, setValue] = useState("");
-  const [error, setError] = useState(false);
+  const [phase, setPhase] = useState<Phase>("entering");
+  const [errorVersion, setErrorVersion] = useState(0);
+  const [igniteOrigin, setIgniteOrigin] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
+  const errorTimeoutRef = useRef<number | null>(null);
+  const igniteTimeoutsRef = useRef<number[]>([]);
 
-  const matched = useMemo(() => value.trim() === OWNER_NAME, [value]);
+  useEffect(() => {
+    const t = window.setTimeout(() => setPhase("idle"), 1000);
+    return () => window.clearTimeout(t);
+  }, []);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (matched) {
-      setError(false);
-      openGate();
-      navigate("/main");
-    } else {
-      setError(true);
+  useEffect(() => {
+    const igniteTimeouts = igniteTimeoutsRef.current;
+    return () => {
+      if (errorTimeoutRef.current !== null) {
+        window.clearTimeout(errorTimeoutRef.current);
+      }
+      igniteTimeouts.forEach((id) => window.clearTimeout(id));
+    };
+  }, []);
+
+  const handleWrong = () => {
+    setPhase("error");
+    setErrorVersion((v) => v + 1);
+    if (errorTimeoutRef.current !== null) {
+      window.clearTimeout(errorTimeoutRef.current);
     }
+    errorTimeoutRef.current = window.setTimeout(() => {
+      setPhase("idle");
+      errorTimeoutRef.current = null;
+    }, ERROR_RESET_MS);
   };
 
-  const rendered = value.trim() === "" ? `{포트폴리오 주인의 이름}` : value;
+  const handleMatch = (origin: { x: number; y: number }) => {
+    openGate();
+    setIgniteOrigin(origin);
+    setPhase("igniting");
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const wait = reduced ? 250 : IGNITE_TO_NAVIGATE_MS;
+    const t = window.setTimeout(() => {
+      setPhase("transitioning");
+      const t2 = window.setTimeout(() => navigate("/main"), 200);
+      igniteTimeoutsRef.current.push(t2);
+    }, wait);
+    igniteTimeoutsRef.current.push(t);
+  };
 
   return (
-    <main className="relative flex flex-1 flex-col items-center justify-center px-6 py-20">
-      <div className="absolute right-6 top-6">
+    <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-20">
+      <MeshBackground />
+      <MouseGlow />
+      <div className="absolute right-6 top-6 z-40">
         <ThemeToggle size="sm" />
       </div>
-      <div className="w-full max-w-xl text-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-neutral-400 dark:text-neutral-500">
+
+      {phase === "error" && (
+        <div
+          key={errorVersion}
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-20 animate-vignette-flash"
+          style={{
+            background:
+              "radial-gradient(circle, transparent 30%, rgba(239,68,68,0.15) 100%)",
+          }}
+        />
+      )}
+
+      {(phase === "igniting" || phase === "transitioning") && igniteOrigin && (
+        <IgniteOverlay originX={igniteOrigin.x} originY={igniteOrigin.y} />
+      )}
+
+      <div className="relative z-20 w-full max-w-xl text-center">
+        <p
+          className="mb-4 text-sm uppercase tracking-[0.3em] text-neutral-400 animate-rise dark:text-neutral-500"
+          style={{ animationDelay: "200ms" }}
+        >
           Welcome
         </p>
         <h1 className="!mt-0 !mb-2 !text-4xl md:!text-5xl">
-          정확한 이름을 입력해 주세요
+          <span
+            className="inline-block overflow-hidden align-bottom"
+            style={{ paddingBottom: "0.15em" }}
+          >
+            <span
+              className="inline-block animate-mask-reveal"
+              style={{ animationDelay: "350ms", transform: "translateY(100%)" }}
+            >
+              누굴 만나러 오셨나요?
+            </span>
+          </span>
         </h1>
-        <p className="text-base text-neutral-500 dark:text-neutral-400">
+        <p
+          className="text-base text-neutral-500 animate-rise dark:text-neutral-400"
+          style={{ animationDelay: "600ms" }}
+        >
           포트폴리오 주인의 이름을 알아맞히면 입장할 수 있어요.
         </p>
-
-        <form onSubmit={handleSubmit} className="mt-10 flex flex-col gap-4">
-          <label className="sr-only" htmlFor="owner-name">
-            포트폴리오 주인의 이름
-          </label>
-          <input
-            id="owner-name"
-            type="text"
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-              if (error) setError(false);
-            }}
-            placeholder="이름을 입력하세요"
-            autoComplete="off"
-            className="w-full rounded-xl border border-neutral-300 bg-white/60 px-5 py-3 text-center text-lg text-neutral-900 outline-none transition focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20 dark:border-neutral-700 dark:bg-neutral-900/60 dark:text-neutral-100"
+        <div className="animate-rise" style={{ animationDelay: "800ms" }}>
+          <NameGateForm
+            expectedName={profile.name}
+            shake={phase === "error"}
+            igniting={phase === "igniting" || phase === "transitioning"}
+            onMatch={handleMatch}
+            onWrong={handleWrong}
           />
-
-          <button
-            type="submit"
-            disabled={!matched}
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-purple-400/50 bg-purple-500/10 px-6 py-3 text-lg font-medium text-purple-700 transition hover:enabled:bg-purple-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:text-purple-300"
-          >
-            <span>
-              <span
-                className={
-                  matched
-                    ? "font-semibold text-purple-700 dark:text-purple-300"
-                    : "text-neutral-500 dark:text-neutral-400"
-                }
-              >
-                {rendered}
-              </span>
-              <span>의 포트폴리오 보러가기</span>
-            </span>
-            <span
-              aria-hidden
-              className="transition-transform group-hover:enabled:translate-x-0.5"
-            >
-              →
-            </span>
-          </button>
-
-          <p
-            role="status"
-            aria-live="polite"
-            className={`min-h-5 text-sm ${
-              error
-                ? "text-red-500"
-                : "text-transparent"
-            }`}
-          >
-            이름이 일치하지 않습니다. 다시 시도해 주세요.
-          </p>
-        </form>
+        </div>
       </div>
     </main>
   );

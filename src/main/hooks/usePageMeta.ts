@@ -6,19 +6,13 @@ type PageMetaOptions = {
   canonicalPath?: string;
 };
 
-function setMetaContent(selector: string, content: string): string | null {
-  const el = document.querySelector<HTMLMetaElement>(selector);
-  if (!el) return null;
-  const prev = el.getAttribute("content");
-  el.setAttribute("content", content);
-  return prev;
-}
+type Target = [selector: string, attr: "content" | "href", value: string];
 
-function setLinkHref(selector: string, href: string): string | null {
-  const el = document.querySelector<HTMLLinkElement>(selector);
+function apply([sel, attr, val]: Target): string | null {
+  const el = document.querySelector(sel);
   if (!el) return null;
-  const prev = el.getAttribute("href");
-  el.setAttribute("href", href);
+  const prev = el.getAttribute(attr);
+  el.setAttribute(attr, val);
   return prev;
 }
 
@@ -30,56 +24,25 @@ export function usePageMeta({
   useEffect(() => {
     const prevTitle = document.title;
     if (title) document.title = title;
+    const url = canonicalPath ? `${window.location.origin}${canonicalPath}` : "";
 
-    const prevDesc = description
-      ? setMetaContent('meta[name="description"]', description)
-      : null;
-    const prevOgTitle = title
-      ? setMetaContent('meta[property="og:title"]', title)
-      : null;
-    const prevOgDesc = description
-      ? setMetaContent('meta[property="og:description"]', description)
-      : null;
-    const prevTwTitle = title
-      ? setMetaContent('meta[name="twitter:title"]', title)
-      : null;
-    const prevTwDesc = description
-      ? setMetaContent('meta[name="twitter:description"]', description)
-      : null;
+    const targets = [
+      title && ['meta[property="og:title"]', "content", title],
+      title && ['meta[name="twitter:title"]', "content", title],
+      description && ['meta[name="description"]', "content", description],
+      description && ['meta[property="og:description"]', "content", description],
+      description && ['meta[name="twitter:description"]', "content", description],
+      canonicalPath && ['link[rel="canonical"]', "href", url],
+      canonicalPath && ['meta[property="og:url"]', "content", url],
+    ].filter(Boolean) as Target[];
 
-    let prevCanonical: string | null = null;
-    let prevOgUrl: string | null = null;
-    if (canonicalPath) {
-      const fullUrl = `${window.location.origin}${canonicalPath}`;
-      prevCanonical = setLinkHref('link[rel="canonical"]', fullUrl);
-      prevOgUrl = setMetaContent('meta[property="og:url"]', fullUrl);
-    }
-
+    const prev = targets.map(apply);
     return () => {
       if (title) document.title = prevTitle;
-      if (description && prevDesc !== null) {
-        setMetaContent('meta[name="description"]', prevDesc);
-      }
-      if (title && prevOgTitle !== null) {
-        setMetaContent('meta[property="og:title"]', prevOgTitle);
-      }
-      if (description && prevOgDesc !== null) {
-        setMetaContent('meta[property="og:description"]', prevOgDesc);
-      }
-      if (title && prevTwTitle !== null) {
-        setMetaContent('meta[name="twitter:title"]', prevTwTitle);
-      }
-      if (description && prevTwDesc !== null) {
-        setMetaContent('meta[name="twitter:description"]', prevTwDesc);
-      }
-      if (canonicalPath) {
-        if (prevCanonical !== null) {
-          setLinkHref('link[rel="canonical"]', prevCanonical);
-        }
-        if (prevOgUrl !== null) {
-          setMetaContent('meta[property="og:url"]', prevOgUrl);
-        }
-      }
+      targets.forEach(([sel, attr], i) => {
+        const v = prev[i];
+        if (v !== null) document.querySelector(sel)?.setAttribute(attr, v);
+      });
     };
   }, [title, description, canonicalPath]);
 }

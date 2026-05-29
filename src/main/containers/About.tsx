@@ -1,4 +1,5 @@
 import Card from "../components/Card";
+import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import { about } from "../data/profile";
 import { competencies } from "../data/strengths";
@@ -13,15 +14,17 @@ export default function About() {
     >
       <ul className="grid gap-4 md:grid-cols-3">
         {about.map((line, idx) => (
-          <li
+          <Reveal
+            as="li"
             key={line}
+            delay={idx * 80}
             className="rounded-2xl border border-neutral-200 bg-white/60 p-6 text-sm leading-relaxed text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900/60 dark:text-neutral-200"
           >
             <span className="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full border border-purple-400/50 text-xs font-semibold text-purple-600 dark:text-purple-300">
               0{idx + 1}
             </span>
             <p>{line}</p>
-          </li>
+          </Reveal>
         ))}
       </ul>
 

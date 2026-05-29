@@ -78,3 +78,155 @@ h2 {
 p {
   margin: 0;
 }
+
+/* ====================================================
+   Home gate cinematic interactions
+   ==================================================== */
+
+/* Ambient mesh drift (3 different paths for asymmetry) */
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(60px, -40px) rotate(8deg); }
+}
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-50px, 50px) rotate(-6deg); }
+}
+@keyframes mesh-drift-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(40px, 30px) rotate(4deg); }
+}
+
+/* Particle floats upward with subtle x sway */
+@keyframes particle-float {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 0.4; }
+  50%  { transform: translate(12px, -40vh); }
+  90%  { opacity: 0.4; }
+  100% { transform: translate(-8px, -90vh); opacity: 0; }
+}
+
+/* Title text mask reveal */
+@keyframes mask-reveal {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Generic fade + slide-up for entrance */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Input ripple */
+@keyframes ripple {
+  from { transform: translateX(-50%) scale(0); opacity: 0.4; }
+  to   { transform: translateX(-50%) scale(2.5); opacity: 0; }
+}
+
+/* Error shake */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-8px); }
+  40%  { transform: translateX(8px); }
+  60%  { transform: translateX(-6px); }
+  80%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Error vignette flash */
+@keyframes vignette-flash {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Success ignite bloom (translate keeps origin at button center) */
+@keyframes ignite-bloom {
+  0%   { transform: translate(-50%, -50%) scale(0);   background-color: rgb(168 85 247); }
+  60%  {                                              background-color: rgb(168 85 247); }
+  100% { transform: translate(-50%, -50%) scale(70);  background-color: rgb(255 255 255); }
+}
+
+/* Generic fade-in for /main entrance */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Utility classes */
+.animate-rise          { animation: rise 600ms cubic-bezier(0.25, 0.4, 0.25, 1) forwards; opacity: 0; }
+.animate-mask-reveal   { animation: mask-reveal 700ms cubic-bezier(0.25, 0.4, 0.25, 1) forwards; }
+.animate-ripple        { animation: ripple 800ms ease-out forwards; }
+.animate-shake         { animation: shake 400ms ease-out; }
+.animate-vignette-flash{ animation: vignette-flash 680ms ease-out forwards; }
+.animate-ignite-bloom  { animation: ignite-bloom 800ms ease-out forwards; }
+.animate-fade-in       { animation: fade-in 600ms ease-out forwards; opacity: 0; }
+.animate-mesh-1        { animation: mesh-drift-1 18s ease-in-out infinite; }
+.animate-mesh-2        { animation: mesh-drift-2 22s ease-in-out infinite; }
+.animate-mesh-3        { animation: mesh-drift-3 26s ease-in-out infinite; }
+.animate-particle      { animation: particle-float linear infinite; }
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-mask-reveal,
+  .animate-fade-in {
+    animation: fade-in 200ms ease-out forwards;
+  }
+  .animate-ripple,
+  .animate-shake,
+  .animate-vignette-flash,
+  .animate-mesh-1,
+  .animate-mesh-2,
+  .animate-mesh-3,
+  .animate-particle,
+  .animate-ignite-bloom {
+    animation: none;
+  }
+  .reduced-motion-hide { display: none !important; }
+}
+
+/* ====================================================
+   /main interaction layer
+   ==================================================== */
+
+/* Smooth in-page anchor scrolling */
+html { scroll-behavior: smooth; }
+
+/* Scroll-reveal entrance */
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-reveal-rise { animation: reveal-rise 600ms cubic-bezier(0.25, 0.4, 0.25, 1) both; }
+
+/* Career timeline line draw */
+@keyframes timeline-draw {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+.animate-timeline-draw { animation: timeline-draw 800ms ease-out both; transform-origin: top; }
+
+/* Current career dot pulse */
+@keyframes dot-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(168, 85, 247, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+}
+.animate-dot-pulse { animation: dot-pulse 2.4s ease-out infinite; }
+
+/* Reduced motion overrides for /main */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-reveal-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .animate-timeline-draw {
+    animation: none;
+    transform: none;
+  }
+  .animate-dot-pulse { animation: none; }
+}

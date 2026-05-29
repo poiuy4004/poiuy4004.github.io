@@ -4,7 +4,7 @@ export type ThemePreference = "light" | "dark" | "system";
 
 const STORAGE_KEY = "theme-preference";
 
-let listeners = new Set<() => void>();
+const listeners = new Set<() => void>();
 
 function readStored(): ThemePreference {
   if (typeof window === "undefined") return "system";

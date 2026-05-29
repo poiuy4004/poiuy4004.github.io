@@ -1,3 +1,4 @@
+import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import TestimonialCard from "../components/TestimonialCard";
 import ValueCard from "../components/ValueCard";
@@ -13,9 +14,9 @@ export default function Strengths() {
     >
       <ul className="grid gap-4 md:grid-cols-2">
         {values.map((v, idx) => (
-          <li key={v.title}>
+          <Reveal as="li" key={v.title} delay={idx * 80}>
             <ValueCard index={idx} title={v.title} points={v.points} />
-          </li>
+          </Reveal>
         ))}
       </ul>
 
@@ -23,10 +24,10 @@ export default function Strengths() {
         주변인 평가
       </h3>
       <ul className="grid gap-4 md:grid-cols-2">
-        {testimonials.map((t) => (
-          <li key={t.quote}>
+        {testimonials.map((t, idx) => (
+          <Reveal as="li" key={t.quote} delay={idx * 80}>
             <TestimonialCard quote={t.quote} author={t.author} />
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>

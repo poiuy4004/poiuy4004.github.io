@@ -1,5 +1,6 @@
 import type { CareerItem } from "../data/career";
 import { periodToISO } from "../utils/date";
+import { useInView } from "../hooks/useInView";
 import Tag from "./Tag";
 
 type TimelineItemProps = {
@@ -8,20 +9,24 @@ type TimelineItemProps = {
 };
 
 export default function TimelineItem({ item, isLast }: TimelineItemProps) {
+  const { ref, inView } = useInView<HTMLLIElement>();
   return (
-    <li className="relative pl-8">
+    <li ref={ref} className="relative pl-8">
       <span
         aria-hidden
         className={`absolute left-2.5 top-2 h-3 w-3 -translate-x-1/2 rounded-full border-2 ${
           item.current
-            ? "border-purple-500 bg-purple-500"
+            ? "border-purple-500 bg-purple-500 animate-dot-pulse"
             : "border-neutral-300 bg-white dark:border-neutral-600 dark:bg-neutral-900"
         }`}
       />
       {!isLast && (
         <span
           aria-hidden
-          className="absolute left-2.5 top-5 -translate-x-1/2 h-[calc(100%-1rem)] w-px bg-neutral-200 dark:bg-neutral-800"
+          className={`absolute left-2.5 top-5 -translate-x-1/2 h-[calc(100%-1rem)] w-px bg-neutral-200 dark:bg-neutral-800 ${
+            inView ? "animate-timeline-draw" : "scale-y-0"
+          }`}
+          style={{ transformOrigin: "top" }}
         />
       )}
 

@@ -1,4 +1,5 @@
 import ContactItem from "../components/ContactItem";
+import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import { profile } from "../data/profile";
 
@@ -12,23 +13,23 @@ export default function Contact() {
     >
       <address className="not-italic">
         <ul className="grid gap-3 sm:grid-cols-2">
-          <li>
+          <Reveal as="li" delay={0}>
             <ContactItem
               label="Email"
               value={profile.email}
               href={`mailto:${profile.email}`}
               icon={<span className="text-base">@</span>}
             />
-          </li>
-          <li>
+          </Reveal>
+          <Reveal as="li" delay={80}>
             <ContactItem
               label="Mobile"
               value={profile.phoneDisplay}
               href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}
               icon={<span className="text-base">☏</span>}
             />
-          </li>
-          <li>
+          </Reveal>
+          <Reveal as="li" delay={160}>
             <ContactItem
               label="Notion Resume"
               value="yielding-brick-c96.notion.site"
@@ -36,15 +37,15 @@ export default function Contact() {
               href={profile.resume}
               icon={<span className="text-base">✎</span>}
             />
-          </li>
-          <li>
+          </Reveal>
+          <Reveal as="li" delay={240}>
             <ContactItem
               label="Portfolio Archive"
               value={profile.portfolio.replace("https://", "")}
               href={profile.portfolio}
               icon={<span className="text-base">◎</span>}
             />
-          </li>
+          </Reveal>
         </ul>
       </address>
     </Section>

@@ -1,4 +1,5 @@
 import ProjectCard from "../components/ProjectCard";
+import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import { projects } from "../data/projects";
 
@@ -11,10 +12,10 @@ export default function Projects() {
       description="작업하면서 가장 많이 배웠다고 느끼는 프로젝트들을 모았습니다."
     >
       <ul className="grid gap-5 md:grid-cols-2">
-        {projects.map((project) => (
-          <li key={project.title}>
+        {projects.map((project, idx) => (
+          <Reveal as="li" key={project.title} delay={idx * 80}>
             <ProjectCard project={project} />
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>
