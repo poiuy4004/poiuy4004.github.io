@@ -61,9 +61,9 @@ export default function Intro() {
             연락하기
           </IntroAction>
           <IntroAction href="#projects">프로젝트 보기</IntroAction>
-          <IntroAction href={profile.resume} external trailing="↗">
+          {/* <IntroAction href={profile.resume} external trailing="↗">
             Notion Resume
-          </IntroAction>
+          </IntroAction> */}
         </div>
       </div>
     </section>
