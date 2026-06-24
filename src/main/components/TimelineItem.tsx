@@ -64,6 +64,22 @@ export default function TimelineItem({ item, isLast }: TimelineItemProps) {
             </li>
           ))}
         </ul>
+        {item.links && item.links.length > 0 && (
+          <ul className="mt-4 flex flex-wrap gap-3">
+            {item.links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-purple-600 transition hover:text-purple-500 dark:text-purple-300"
+                >
+                  {link.label} <span aria-hidden>↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </article>
     </li>
   );

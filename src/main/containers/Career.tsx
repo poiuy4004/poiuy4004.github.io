@@ -13,7 +13,7 @@ export default function Career() {
       <ol className="relative">
         {careers.map((item, idx) => (
           <TimelineItem
-            key={item.company}
+            key={`${item.company}-${item.period}`}
             item={item}
             isLast={idx === careers.length - 1}
           />
