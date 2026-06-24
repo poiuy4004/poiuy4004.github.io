@@ -149,7 +149,10 @@ export default function ConstellationCanvas() {
       pointer.y = e.clientY - rect.top;
       pointer.active = true;
     };
-    const onLeave = () => {
+    const onLeave = (e: MouseEvent) => {
+      // window "mouseout" bubbles on every child boundary crossing; only treat
+      // it as a real leave when the pointer actually exits the document.
+      if (e.relatedTarget !== null) return;
       pointer.active = false;
       pointer.x = -9999;
       pointer.y = -9999;
