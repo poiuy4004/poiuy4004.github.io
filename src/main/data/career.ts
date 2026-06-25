@@ -36,7 +36,7 @@ export const careers: CareerItem[] = [
   },
   {
     company: "더퍼스트에듀",
-    position: "Frontend Developer",
+    position: "Fullstack Developer · AI Engineer",
     employmentType: "프리랜서",
     period: "2026.06",
     description:
@@ -55,18 +55,18 @@ export const careers: CareerItem[] = [
   },
   {
     company: "에이전트에이아이랩스",
-    position: "Frontend Developer",
+    position: "Fullstack Developer · AI Engineer",
     employmentType: "정규직",
     period: "2026.04 — 2026.06",
     description:
-      "법률 상담 AI 서비스 Lawbot, 블록체인 기반 Payment·PG, 사토시홀딩스 그룹사 홈페이지 등 신규 프로덕트의 프론트엔드와 AI 설계를 담당했습니다.",
+      "법률 상담 AI 서비스 Lawbot, 블록체인 기반 Payment·PG, 사토시홀딩스 그룹사 홈페이지 등 신규 프로덕트를 프론트엔드부터 백엔드·인프라까지 풀스택으로 담당하고, RAG·파인튜닝 기반 상담 AI 루프를 직접 설계했습니다.",
     achievements: [
       "법률 상담 AI 서비스 ʻLawbot' 개발 — 판례·법령 기반 RAG와 파인튜닝으로 전문 상담 챗봇 구현",
       "구글·카카오·네이버 OAuth 소셜 로그인과 신규 회원가입·로그인 구현",
       "국가법령정보센터·법제처·케이스노트 등 API·크롤링으로 판례를 수집해 파인튜닝·RAG 구성",
       "판례·AI 튜닝용 DB 설계·마이그레이션과 S3 버킷 패치·정리 운영",
       "사토시홀딩스 그룹사(FIBER·DroneHUB 등) 홈페이지 개발 및 AWS 배포·도메인 연결 (05/15 상한가 달성)",
-      "블록체인 기반 Payment·PG 프로젝트 프론트엔드 진행",
+      "블록체인 기반 Payment·PG 프로젝트 프론트엔드·API 연동 진행",
     ],
     stack: [
       "Next.js",
@@ -83,7 +83,7 @@ export const careers: CareerItem[] = [
   },
   {
     company: "캘러스컴퍼니",
-    position: "Vibe Coder (Frontend Developer)",
+    position: "Vibe Coder (Fullstack Developer)",
     employmentType: "정규직",
     period: "2026.03",
     description:
@@ -98,7 +98,7 @@ export const careers: CareerItem[] = [
   },
   {
     company: "한국통번역주식회사",
-    position: "Frontend Developer",
+    position: "Fullstack Developer",
     employmentType: "계약직",
     period: "2025.04 — 2025.08",
     description:
@@ -113,11 +113,11 @@ export const careers: CareerItem[] = [
   },
   {
     company: "케이잡스",
-    position: "Frontend Developer",
+    position: "Fullstack Developer",
     employmentType: "정규직",
     period: "2024.04 — 2025.08",
     description:
-      "글로벌 인재채용 플랫폼·취업 지원 앱·기업 홈페이지 리뉴얼·정부 위탁 앱(아미잡) 등 다양한 영역을 동시에 운영하며, 프론트엔드를 중심으로 백엔드·인프라·SEO까지 폭넓게 다뤘습니다.",
+      "글로벌 인재채용 플랫폼·취업 지원 앱·기업 홈페이지 리뉴얼·정부 위탁 앱(아미잡) 등 다양한 영역을 동시에 운영하며, 프론트엔드부터 백엔드·인프라·SEO·AI까지 풀스택으로 폭넓게 다뤘습니다.",
     achievements: [
       "ʻ커리어 커넥트' 앱·웹 개발 및 AI 커리어 설계 알고리즘 구축",
       "ʻ케이잡스링크' 글로벌 채용 플랫폼 신규 구축 (TailwindCSS 신규 도입)",
@@ -136,7 +136,7 @@ export const careers: CareerItem[] = [
   },
   {
     company: "더퍼스트에듀",
-    position: "Frontend Developer",
+    position: "Fullstack Developer",
     employmentType: "프리랜서",
     period: "2023.12 — 2024.03",
     description:

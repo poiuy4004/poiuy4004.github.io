@@ -23,7 +23,7 @@ export default function Home() {
   usePageMeta({
     title: "장용민의 포트폴리오 | Developer",
     description:
-      "4년 10개월 차 개발자 장용민의 포트폴리오. 기획·디자인·프론트엔드·백엔드·배포·SEO까지 AtoZ로 다뤄 온 경험과 React, Next.js, React Native 기반 프로젝트를 소개합니다.",
+      "4년 10개월 차 풀스택 개발자 장용민의 포트폴리오. 기획·디자인·프론트엔드·백엔드·배포·SEO에 더해 RAG·파인튜닝 기반 AI 루프까지 다뤄 온 경험과 React, Next.js, React Native 기반 프로젝트를 소개합니다.",
     canonicalPath: "/",
   });
 

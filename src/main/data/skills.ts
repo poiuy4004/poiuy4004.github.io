@@ -44,7 +44,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Backend · Auth · Database",
-    description: "프론트 외에도 운영을 위해 직접 다뤄 본 영역",
+    description: "API·인증·DB까지 직접 설계하고 운영해 온 영역",
     skills: [
       { name: "Next.js API Routes", level: "expert" },
       { name: "NextAuth", level: "expert" },
@@ -70,8 +70,8 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "SEO · AI · Media",
-    description: "검색 최적화, AI 활용·튜닝, 자체 리소스 제작",
+    title: "AI · LLM · SEO · Media",
+    description: "RAG·파인튜닝·프롬프트 기반 AI 루프 설계, 검색 최적화, 자체 리소스 제작",
     skills: [
       { name: "Google Search Console", level: "expert" },
       { name: "Naver Search Advisor", level: "expert" },

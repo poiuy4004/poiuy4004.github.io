@@ -19,21 +19,22 @@ export const projects: Project[] = [
     title: "사토시홀딩스 그룹사 홈페이지",
     company: "에이전트에이아이랩스",
     period: "2026.04",
-    role: "Frontend",
+    role: "웹 개발 · AWS 배포",
     summary:
-      "AI로 혁신을 이끌고 있는 FIBER, DroneHUB 등 자회사를 포함한 사토시홀딩스 그룹사 홈페이지를 개발했습니다.",
+      "AI로 혁신을 이끌고 있는 FIBER, DroneHUB 등 자회사를 포함한 사토시홀딩스 그룹사 홈페이지를 개발하고, AWS 배포·도메인 연결까지 직접 진행했습니다.",
     highlights: [
       "그룹사·자회사 소개 페이지 구조 설계",
       "재사용 가능한 섹션 컴포넌트 단위로 페이지 구성",
+      "AWS 배포·도메인 연결 (05/15 상한가 달성)",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "AWS"],
     links: [{ label: "Website", href: "https://satoshi.holdings/" }],
   },
   {
     title: "Audition Me — Dance Tournament",
     company: "캘러스컴퍼니",
     period: "2026.03",
-    role: "Frontend (RN), AI 협업 개발",
+    role: "App 개발 (RN) · AI 협업",
     summary:
       "댄스 토너먼트 플랫폼 ʻAudition Me'의 Android·iOS 앱을 React Native로 동시 개발했습니다. Claude·Gemini를 활용해 개발 속도를 끌어올리되, AI 결과물의 구조와 가독성을 직접 정리했습니다.",
     highlights: [
@@ -58,7 +59,7 @@ export const projects: Project[] = [
     title: "커리어 커넥트 (Konnect)",
     company: "케이잡스",
     period: "2025.04 — 2025.08",
-    role: "Frontend, AI 알고리즘 설계",
+    role: "Fullstack · AI 알고리즘 설계",
     summary:
       "ClaudeAI를 활용해 취업 대상 연령과 목적에 최적화된 커리어 설계 알고리즘을 탑재한 앱·웹 서비스 ʻ커리어 커넥트'를 제작했습니다.",
     highlights: [
@@ -85,7 +86,7 @@ export const projects: Project[] = [
     title: "케이잡스링크 (글로벌 인재채용 플랫폼)",
     company: "케이잡스",
     period: "2025.01 — 2025.04",
-    role: "Frontend 전반",
+    role: "Fullstack 전반",
     summary:
       "해외 인력 수출·수입을 위한 글로벌 인재채용 플랫폼 ʻ케이잡스링크'의 개발 전반을 담당했습니다. 기존 Styled-Components 위주의 스타일링에 Tailwind CSS를 도입해 효율성을 끌어올렸습니다.",
     highlights: [
@@ -101,7 +102,7 @@ export const projects: Project[] = [
     title: "케이잡스 홈페이지 리뉴얼",
     company: "케이잡스",
     period: "2025.04 — 2025.08",
-    role: "Frontend",
+    role: "웹 리뉴얼 · 운영",
     summary:
       "본사 홈페이지 전반과 사무실 안내 지도·회사 소개·조직도 등 주요 컴포넌트의 리뉴얼을 진행했습니다. 글로벌 스탠다드 Google Maps Platform을 새로 도입했습니다.",
     highlights: [
@@ -117,7 +118,7 @@ export const projects: Project[] = [
     title: "국방전직교육원 ʻ아미잡' 앱",
     company: "케이잡스",
     period: "2024.05 — 2024.07",
-    role: "Frontend (RN), 백엔드, 배포",
+    role: "Fullstack (RN) · 백엔드 · 배포",
     summary:
       "React Native로 국방전직교육원 앱을 개발하며 실무 첫 RN 출시 경험을 쌓았습니다. 기능 명세서 작성부터 배포까지 직접 진행했습니다.",
     highlights: [
@@ -139,7 +140,7 @@ export const projects: Project[] = [
     title: "한국통번역(KICAT) 홈페이지 리뉴얼",
     company: "한국통번역주식회사",
     period: "2025.04 — 2025.08",
-    role: "팀 협업, 풀스택",
+    role: "Fullstack (팀 협업)",
     summary:
       "팀원과 협업한 첫 프로젝트로, 계약·기획·디자인·풀스택 개발·SEO까지 전 과정을 함께 진행했습니다.",
     highlights: [

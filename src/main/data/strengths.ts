@@ -55,6 +55,7 @@ export const competencies: string[] = [
   "Storybook을 활용한 통일성 있는 UI 시스템 구성이 가능합니다.",
   "AWS, Vercel, CAFE24 등 배포 환경에 구애받지 않습니다.",
   "다양한 AI 도구를 활용해 언어·프레임워크·라이브러리에 유연하게 대응합니다.",
+  "RAG·파인튜닝·프롬프트 엔지니어링으로 상담·추천 AI 루프를 직접 설계·운영합니다.",
   "FTP를 통한 운영 단계 유지보수가 가능합니다.",
   "Google Search Console·Naver Search Advisor를 통한 SEO 작업을 직접 수행합니다.",
   "Google Play Console·App Store Connect를 통한 앱 등록·배포 경험이 있습니다.",
