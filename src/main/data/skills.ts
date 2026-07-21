@@ -18,7 +18,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "TypeScript", level: "expert" },
       { name: "JavaScript", level: "expert" },
-      { name: "Java", level: "expert" },
+      { name: "Java", level: "advanced" },
     ],
   },
   {
@@ -28,7 +28,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "React", level: "expert" },
       { name: "Next.js", level: "expert" },
       { name: "React Native", level: "expert" },
-      { name: "Spring Framework", level: "expert" },
+      { name: "Spring Framework", level: "intermediate" },
       { name: "Flutter", level: "familiar" },
     ],
   },
@@ -38,7 +38,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Tailwind CSS", level: "expert" },
       { name: "Styled-Components", level: "expert" },
-      { name: "Storybook", level: "expert" },
+      { name: "Storybook", level: "advanced" },
       { name: "Figma", level: "expert" },
     ],
   },

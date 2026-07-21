@@ -3,19 +3,13 @@ import IntroAmbient from "../components/IntroAmbient";
 import StatBlock from "../components/StatBlock";
 import Tag from "../components/Tag";
 import { profile } from "../data/profile";
-
-const STATS: { value: string; label: string }[] = [
-  { value: profile.yearsOfExperience, label: "실무 경력" },
-  { value: "5+", label: "소속·계약 회사" },
-  { value: "8+", label: "배포까지 완수한 프로젝트" },
-  { value: "3", label: "App Store 출시 앱" },
-];
+import { introStats } from "../data/stats";
 
 export default function Intro() {
   return (
     <section
       id="intro"
-      className="relative scroll-mt-20 overflow-hidden px-6 pt-20 pb-12 md:pt-28 md:pb-16"
+      className="relative scroll-mt-28 overflow-hidden px-6 pt-20 pb-12 md:scroll-mt-20 md:pt-28 md:pb-16"
     >
       <IntroAmbient />
       <div className="relative mx-auto max-w-5xl text-left">
@@ -49,7 +43,7 @@ export default function Intro() {
           className="mt-10 grid grid-cols-2 gap-3 animate-rise sm:grid-cols-4"
           style={{ animationDelay: "650ms" }}
         >
-          {STATS.map((s) => (
+          {introStats.map((s) => (
             <StatBlock key={s.label} {...s} />
           ))}
         </div>
