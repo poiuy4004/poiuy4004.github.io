@@ -6,6 +6,8 @@ type ContactItemProps = {
   href?: string;
   icon?: ReactNode;
   subLabel?: string;
+  /** What the copy button writes, when it differs from the shortened `value`. */
+  copyValue?: string;
 };
 
 export default function ContactItem({
@@ -14,13 +16,14 @@ export default function ContactItem({
   href,
   icon,
   subLabel,
+  copyValue,
 }: ContactItemProps) {
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<number | null>(null);
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(value);
+      await navigator.clipboard.writeText(copyValue ?? value);
       setCopied(true);
       if (timeoutRef.current !== null) window.clearTimeout(timeoutRef.current);
       timeoutRef.current = window.setTimeout(() => setCopied(false), 1500);
@@ -30,6 +33,9 @@ export default function ContactItem({
   };
 
   const display = subLabel || value;
+  // mailto:/tel: hand off to a native handler — opening them in a new tab
+  // leaves a blank window behind.
+  const isExternal = href?.startsWith("http") ?? false;
 
   return (
     <div className="group relative flex items-center gap-3 rounded-xl border border-neutral-200 bg-white/60 px-4 py-3 transition duration-300 hover:-translate-y-0.5 hover:border-purple-300 hover:bg-purple-500/5 hover:shadow-md hover:shadow-purple-500/10 dark:border-neutral-800 dark:bg-neutral-900/60 dark:hover:border-purple-500/40">
@@ -37,14 +43,15 @@ export default function ContactItem({
         {icon}
       </span>
       <span className="flex min-w-0 flex-1 flex-col text-left">
-        <span className="text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+        <span className="text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
           {label}
         </span>
         {href ? (
           <a
             href={href}
-            target="_blank"
-            rel="noreferrer noopener"
+            {...(isExternal
+              ? { target: "_blank", rel: "noreferrer noopener" }
+              : {})}
             className="truncate text-sm font-medium text-neutral-800 hover:text-purple-600 dark:text-neutral-100 dark:hover:text-purple-300"
           >
             {display}

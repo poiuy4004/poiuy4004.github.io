@@ -34,6 +34,7 @@ export default function Contact() {
               label="Notion Resume"
               value="yielding-brick-c96.notion.site"
               subLabel="Dev. YongMin"
+              copyValue={profile.resume}
               href={profile.resume}
               icon={<span className="text-base">✎</span>}
             />
@@ -42,6 +43,7 @@ export default function Contact() {
             <ContactItem
               label="Portfolio Archive"
               value={profile.portfolio.replace("https://", "")}
+              copyValue={profile.portfolio}
               href={profile.portfolio}
               icon={<span className="text-base">◎</span>}
             />

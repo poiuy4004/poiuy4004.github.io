@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "../main/hooks/useReducedMotion";
 
 type Node = {
   x: number;
@@ -19,14 +20,10 @@ const REPEL = 0.9; // cursor repulsion strength
  */
 export default function ConstellationCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      typeof window === "undefined"
-    ) {
-      return;
-    }
+    if (reduced || typeof window === "undefined") return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -184,13 +181,13 @@ export default function ConstellationCanvas() {
       window.removeEventListener("mouseout", onLeave);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, []);
+  }, [reduced]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 -z-[5] h-full w-full"
+      className="pointer-events-none absolute inset-0 -z-[5] h-full w-full print:hidden"
     />
   );
 }
