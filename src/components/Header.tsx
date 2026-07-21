@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useScrollSpy } from "../main/hooks/useScrollSpy";
 import ThemeToggle from "../main/components/ThemeToggle";
+import NavLink from "./NavLink";
 
 const NAV_ITEMS = [
   { href: "#intro", id: "intro", label: "Intro" },
@@ -18,6 +19,7 @@ export default function Header() {
   const activeId = useScrollSpy(NAV_IDS);
   const [scrolled, setScrolled] = useState(false);
   const rafRef = useRef(0);
+  const mobileNavRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const update = () => {
@@ -37,9 +39,18 @@ export default function Header() {
     };
   }, []);
 
+  // Keep the active pill in view as the page scrolls. `block: "nearest"`
+  // confines the scrolling to the nav strip so the page itself never jumps.
+  useEffect(() => {
+    const list = mobileNavRef.current;
+    if (!list || !activeId) return;
+    const item = list.querySelector(`[data-nav-id="${activeId}"]`);
+    item?.scrollIntoView({ block: "nearest", inline: "center" });
+  }, [activeId]);
+
   return (
     <header
-      className={`sticky top-0 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur transition-shadow dark:border-neutral-800 dark:bg-neutral-950/70 ${
+      className={`sticky top-0 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur transition-shadow print:hidden dark:border-neutral-800 dark:bg-neutral-950/70 ${
         scrolled ? "shadow-sm" : ""
       }`}
     >
@@ -48,39 +59,47 @@ export default function Header() {
           href="#intro"
           className="text-sm font-semibold tracking-tight text-neutral-900 dark:text-neutral-100"
         >
-          Code<span className="text-purple-500">.Min</span>
+          Code<span className="text-purple-600 dark:text-purple-400">.Min</span>
         </a>
 
         <div className="flex items-center gap-5">
-          <nav className="hidden md:block">
-            <ul className="flex items-center gap-6 text-sm text-neutral-600 dark:text-neutral-400">
-              {NAV_ITEMS.map((item) => {
-                const active = activeId === item.id;
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      aria-current={active ? "true" : undefined}
-                      className={`relative transition hover:text-purple-500 dark:hover:text-purple-300 ${
-                        active ? "text-purple-600 dark:text-purple-300" : ""
-                      }`}
-                    >
-                      {item.label}
-                      <span
-                        aria-hidden
-                        className={`absolute -bottom-1 left-0 h-0.5 w-full origin-left rounded-full bg-purple-500 transition-transform duration-300 ${
-                          active ? "scale-x-100" : "scale-x-0"
-                        }`}
-                      />
-                    </a>
-                  </li>
-                );
-              })}
+          <nav aria-label="섹션" className="hidden md:block">
+            <ul className="flex items-center gap-6 text-sm text-neutral-600 dark:text-neutral-300">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.href}>
+                  <NavLink
+                    href={item.href}
+                    label={item.label}
+                    active={activeId === item.id}
+                    variant="bar"
+                  />
+                </li>
+              ))}
             </ul>
           </nav>
           <ThemeToggle />
         </div>
       </div>
+
+      {/* Mobile: a scrollable strip instead of a disclosure menu — every
+          section stays one tap away and there's no overlay to trap focus in. */}
+      <nav aria-label="섹션" className="md:hidden">
+        <ul
+          ref={mobileNavRef}
+          className="flex snap-x gap-2 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href} data-nav-id={item.id} className="snap-start">
+              <NavLink
+                href={item.href}
+                label={item.label}
+                active={activeId === item.id}
+                variant="pill"
+              />
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

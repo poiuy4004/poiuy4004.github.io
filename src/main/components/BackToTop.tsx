@@ -32,7 +32,10 @@ export default function BackToTop() {
       type="button"
       onClick={toTop}
       aria-label="맨 위로"
-      className={`fixed bottom-6 right-6 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-purple-400/50 bg-white/80 text-lg text-purple-600 shadow-md backdrop-blur transition-opacity duration-300 hover:bg-purple-500/10 dark:bg-neutral-900/80 dark:text-purple-300 ${
+      // Hidden means hidden: without this the invisible button still takes a tab stop.
+      tabIndex={visible ? undefined : -1}
+      aria-hidden={visible ? undefined : true}
+      className={`fixed bottom-6 right-6 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-purple-400/50 bg-white/80 text-lg text-purple-600 shadow-md backdrop-blur transition-opacity duration-300 hover:bg-purple-500/10 print:hidden dark:bg-neutral-900/80 dark:text-purple-300 ${
         visible ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
     >

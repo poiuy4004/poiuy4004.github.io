@@ -19,12 +19,17 @@ export default function Section({
   className = "",
 }: SectionProps) {
   return (
-    <section id={id} className={`scroll-mt-20 px-6 py-16 md:py-24 ${className}`}>
+    // scroll-mt clears the sticky header — taller on mobile, where the nav
+    // strip sits below the bar.
+    <section
+      id={id}
+      className={`scroll-mt-28 px-6 py-16 md:scroll-mt-20 md:py-24 ${className}`}
+    >
       <div className="mx-auto max-w-5xl text-left">
         {(eyebrow || title || description) && (
           <Reveal as="header" className="mb-10 md:mb-12">
             {eyebrow && (
-              <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-purple-500 dark:text-purple-300">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-purple-600 dark:text-purple-300">
                 {eyebrow}
               </p>
             )}

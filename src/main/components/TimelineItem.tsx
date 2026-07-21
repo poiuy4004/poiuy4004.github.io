@@ -40,7 +40,7 @@ export default function TimelineItem({ item, isLast }: TimelineItemProps) {
           </span>
           {item.current && <Tag variant="accent">Current</Tag>}
         </header>
-        <p className="mt-1 text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+        <p className="mt-1 text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
           <time dateTime={periodToISO(item.period)}>{item.period}</time>
         </p>
         <p className="mt-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">

@@ -18,7 +18,7 @@ export default function TestimonialCard({ quote, author }: TestimonialCardProps)
         <p className="text-sm leading-relaxed text-neutral-700 dark:text-neutral-200">
           {quote}
         </p>
-        <footer className="mt-4 text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+        <footer className="mt-4 text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
           — {author}
         </footer>
       </blockquote>

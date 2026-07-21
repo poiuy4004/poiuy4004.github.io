@@ -11,7 +11,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card as="article" tilt className="flex h-full flex-col">
       <header>
-        <p className="text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+        <p className="text-xs uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
           <time dateTime={periodToISO(project.period)}>{project.period}</time>{" "}
           · {project.role}
         </p>
