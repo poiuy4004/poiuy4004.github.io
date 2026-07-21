@@ -1,29 +1,20 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
-import Home from "./home/Home.tsx";
-import RequireGate from "./main/auth/RequireGate.tsx";
-import Main from "./main/Main.tsx";
+import App from "./App.tsx";
 import { initTheme } from "./main/hooks/useTheme.ts";
 
 initTheme();
-document.documentElement.style.scrollBehavior = "smooth";
+
+// The portfolio used to live at /main behind a route guard. Everything is on
+// one page now, so fold any stale deep link (and any unknown path served by
+// the GitHub Pages 404 fallback) back onto the root.
+if (window.location.pathname !== "/") {
+  window.history.replaceState(null, "", "/");
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/main"
-          element={
-            <RequireGate>
-              <Main />
-            </RequireGate>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <App />
   </StrictMode>,
 );

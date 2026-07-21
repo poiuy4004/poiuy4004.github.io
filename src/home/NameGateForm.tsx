@@ -5,9 +5,9 @@ import {
   type FormEvent,
   type MouseEvent as ReactMouseEvent,
 } from "react";
+import { isOwnerName, nameProgress } from "../main/auth/ownerName";
 
 type NameGateFormProps = {
-  expectedName: string;
   shake?: boolean;
   igniting?: boolean;
   onMatch: (origin: { x: number; y: number }) => void;
@@ -18,7 +18,6 @@ const RIPPLE_THROTTLE_MS = 50;
 const MAGNET_STRENGTH = 0.3; // how strongly the button leans toward the cursor
 
 export default function NameGateForm({
-  expectedName,
   shake,
   igniting,
   onMatch,
@@ -31,21 +30,8 @@ export default function NameGateForm({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const magnetRafRef = useRef(0);
 
-  const matched = useMemo(
-    () => value.trim() === expectedName,
-    [value, expectedName],
-  );
-
-  // how far the typed value matches the expected name as a leading prefix (0–1)
-  const progress = useMemo(() => {
-    const v = value.trim();
-    if (v === "") return 0;
-    let i = 0;
-    while (i < v.length && i < expectedName.length && v[i] === expectedName[i]) {
-      i++;
-    }
-    return Math.min(i / expectedName.length, 1);
-  }, [value, expectedName]);
+  const matched = useMemo(() => isOwnerName(value), [value]);
+  const progress = useMemo(() => nameProgress(value), [value]);
 
   const rendered = value.trim() === "" ? `OOO` : value;
 
@@ -158,7 +144,7 @@ export default function NameGateForm({
             className={
               matched
                 ? "font-semibold text-purple-700 dark:text-purple-300"
-                : "text-neutral-500 dark:text-neutral-400"
+                : "text-neutral-600 dark:text-neutral-300"
             }
             style={
               igniting
@@ -180,12 +166,14 @@ export default function NameGateForm({
           →
         </span>
       </button>
+      {/* Rendered empty rather than transparent so screen readers don't
+          announce a failure that hasn't happened yet. */}
       <p
         role="status"
         aria-live="polite"
-        className={`min-h-5 text-sm ${error ? "text-red-500" : "text-transparent"}`}
+        className="min-h-5 text-sm text-red-600 dark:text-red-400"
       >
-        이름이 일치하지 않습니다. 다시 시도해 주세요.
+        {error ? "이름이 일치하지 않습니다. 다시 시도해 주세요." : ""}
       </p>
     </form>
   );

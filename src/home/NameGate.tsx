@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ThemeToggle from "../main/components/ThemeToggle";
 import { openGate } from "../main/auth/gate";
-import { profile } from "../main/data/profile";
-import { usePageMeta } from "../main/hooks/usePageMeta";
 import { usePointerTilt } from "../main/hooks/usePointerTilt";
 import ConstellationCanvas from "./ConstellationCanvas";
 import IgniteOverlay from "./IgniteOverlay";
@@ -14,20 +11,17 @@ import NameGateForm from "./NameGateForm";
 type Phase = "entering" | "idle" | "error" | "igniting" | "transitioning";
 
 const ERROR_RESET_MS = 1200;
-const IGNITE_TO_NAVIGATE_MS = 1000;
+const IGNITE_TO_OPEN_MS = 1000;
 const TITLE = "누굴 만나러 오셨나요?";
 const TITLE_BASE_DELAY = 350;
 const TITLE_CHAR_STEP = 45;
 
-export default function Home() {
-  usePageMeta({
-    title: "장용민의 포트폴리오 | Developer",
-    description:
-      "4년 10개월 차 풀스택 개발자 장용민의 포트폴리오. 기획·디자인·프론트엔드·백엔드·배포·SEO에 더해 RAG·파인튜닝 기반 AI 루프까지 다뤄 온 경험과 React, Next.js, React Native 기반 프로젝트를 소개합니다.",
-    canonicalPath: "/",
-  });
-
-  const navigate = useNavigate();
+/**
+ * Full-screen gate overlay. The portfolio itself stays mounted underneath so
+ * that crawlers (and anyone with JS disabled) still see the real content —
+ * this layer is a presentation choice, not an access control.
+ */
+export default function NameGate() {
   const [phase, setPhase] = useState<Phase>("entering");
   const [errorVersion, setErrorVersion] = useState(0);
   const [igniteOrigin, setIgniteOrigin] = useState<{
@@ -42,6 +36,15 @@ export default function Home() {
   useEffect(() => {
     const t = window.setTimeout(() => setPhase("idle"), 1000);
     return () => window.clearTimeout(t);
+  }, []);
+
+  // Lock the page behind the overlay so it can't be scrolled while gated.
+  useEffect(() => {
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
   }, []);
 
   useEffect(() => {
@@ -67,16 +70,17 @@ export default function Home() {
   };
 
   const handleMatch = (origin: { x: number; y: number }) => {
-    openGate();
     setIgniteOrigin(origin);
     setPhase("igniting");
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const wait = reduced ? 250 : IGNITE_TO_NAVIGATE_MS;
+    const wait = reduced ? 250 : IGNITE_TO_OPEN_MS;
     const t = window.setTimeout(() => {
       setPhase("transitioning");
-      const t2 = window.setTimeout(() => navigate("/main"), 200);
+      // openGate() unmounts this overlay, so it runs only once the bloom has
+      // covered the viewport.
+      const t2 = window.setTimeout(() => openGate(), 200);
       igniteTimeoutsRef.current.push(t2);
     }, wait);
     igniteTimeoutsRef.current.push(t);
@@ -85,7 +89,12 @@ export default function Home() {
   const igniting = phase === "igniting" || phase === "transitioning";
 
   return (
-    <main className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-6 py-20">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gate-title"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-white px-6 py-20 print:hidden dark:bg-neutral-950"
+    >
       <MeshBackground />
       <ConstellationCanvas />
       <MouseGlow />
@@ -122,12 +131,13 @@ export default function Home() {
         className="relative z-20 w-full max-w-xl text-center [transform-style:preserve-3d] [transition:transform_400ms_cubic-bezier(0.25,0.4,0.25,1)]"
       >
         <p
-          className="mb-4 text-sm uppercase tracking-[0.3em] text-neutral-400 animate-rise dark:text-neutral-500"
+          className="mb-4 text-sm uppercase tracking-[0.3em] text-neutral-500 animate-rise dark:text-neutral-400"
           style={{ animationDelay: "200ms" }}
         >
           Welcome
         </p>
         <h1
+          id="gate-title"
           className={`!mt-0 !mb-2 !text-4xl md:!text-5xl ${phase === "error" ? "animate-glitch" : ""}`}
         >
           <span className="inline-block align-bottom" style={{ paddingBottom: "0.15em" }}>
@@ -146,14 +156,13 @@ export default function Home() {
           </span>
         </h1>
         <p
-          className="text-base text-neutral-500 animate-rise dark:text-neutral-400"
+          className="text-base text-neutral-600 animate-rise dark:text-neutral-300"
           style={{ animationDelay: "600ms" }}
         >
           포트폴리오 주인의 이름을 알아맞히면 입장할 수 있어요.
         </p>
         <div className="animate-rise" style={{ animationDelay: "800ms" }}>
           <NameGateForm
-            expectedName={profile.name}
             shake={phase === "error"}
             igniting={igniting}
             onMatch={handleMatch}
@@ -161,6 +170,6 @@ export default function Home() {
           />
         </div>
       </div>
-    </main>
+    </div>
   );
 }
