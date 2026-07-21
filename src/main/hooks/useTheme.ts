@@ -6,12 +6,18 @@ const STORAGE_KEY = "theme-preference";
 
 const listeners = new Set<() => void>();
 
+const DEFAULT_PREFERENCE: ThemePreference = "system";
+
 function readStored(): ThemePreference {
-  if (typeof window === "undefined") return "dark";
-  const saved = window.localStorage.getItem(STORAGE_KEY);
-  return saved === "light" || saved === "dark" || saved === "system"
-    ? saved
-    : "dark";
+  if (typeof window === "undefined") return DEFAULT_PREFERENCE;
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    return saved === "light" || saved === "dark" || saved === "system"
+      ? saved
+      : DEFAULT_PREFERENCE;
+  } catch {
+    return DEFAULT_PREFERENCE;
+  }
 }
 
 function prefersDark(): boolean {
@@ -25,7 +31,11 @@ function applyTheme(pref: ThemePreference) {
 }
 
 function setThemePreference(pref: ThemePreference) {
-  window.localStorage.setItem(STORAGE_KEY, pref);
+  try {
+    window.localStorage.setItem(STORAGE_KEY, pref);
+  } catch {
+    // Storage blocked — the choice still applies for this page view.
+  }
   applyTheme(pref);
   listeners.forEach((l) => l());
 }
@@ -51,7 +61,7 @@ export function useTheme() {
   const preference = useSyncExternalStore(
     subscribe,
     readStored,
-    () => "dark" as ThemePreference,
+    () => DEFAULT_PREFERENCE,
   );
   return { preference, setPreference: setThemePreference };
 }

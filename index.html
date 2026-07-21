@@ -6,6 +6,27 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- Applies the saved theme before first paint so dark-mode visitors
+         never see a white flash. Must stay in sync with src/main/hooks/useTheme.ts. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme-preference");
+          var pref =
+            saved === "light" || saved === "dark" || saved === "system"
+              ? saved
+              : "system";
+          var dark =
+            pref === "dark" ||
+            (pref === "system" &&
+              matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {
+          /* storage blocked — fall back to the CSS default */
+        }
+      })();
+    </script>
+
     <title>장용민의 포트폴리오 | Developer</title>
     <meta
       name="description"
@@ -52,67 +73,31 @@
     <!-- <meta name="google-site-verification" content="GSC_VERIFICATION_CODE" /> -->
     <!-- <meta name="naver-site-verification" content="NAVER_VERIFICATION_CODE" /> -->
 
-    <!-- Structured Data: Person -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "장용민",
-        "alternateName": "Yongmin Jang",
-        "jobTitle": "Developer",
-        "description": "4년 10개월 차 풀스택 개발자. 기획·디자인·프론트엔드·백엔드·배포·SEO에 더해 RAG·파인튜닝 기반 AI 루프까지 직접 다뤄 본 경험을 바탕으로 다른 포지션과 같은 언어로 이야기합니다.",
-        "url": "https://poiuy4004.github.io/",
-        "image": "https://poiuy4004.github.io/og-image.png",
-        "email": "mailto:code.min657@gmail.com",
-        "telephone": "+82-10-7184-2594",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Seoul",
-          "addressCountry": "KR"
-        },
-        "sameAs": [
-          "https://github.com/poiuy4004",
-          "https://yielding-brick-c96.notion.site/_Developer-aba8940403614692b42001035017a628"
-        ],
-        "knowsAbout": [
-          "React",
-          "Next.js",
-          "React Native",
-          "TypeScript",
-          "Tailwind CSS",
-          "AWS",
-          "Vercel",
-          "PostgreSQL",
-          "MySQL",
-          "SEO",
-          "Google Search Console",
-          "Naver Search Advisor",
-          "RAG",
-          "Fine-tuning",
-          "Prompt Engineering",
-          "LLM"
-        ]
-      }
-    </script>
-
-    <!-- Structured Data: WebSite -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "장용민의 포트폴리오",
-        "alternateName": "Yongmin Jang Portfolio",
-        "url": "https://poiuy4004.github.io/",
-        "inLanguage": "ko-KR",
-        "author": {
-          "@type": "Person",
-          "name": "장용민"
-        }
-      }
-    </script>
+    <!-- Structured Data is generated from src/main/data at build time
+         by the `structured-data` plugin in vite.config.ts. -->
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 42rem; margin: 0 auto; padding: 2rem 1.5rem; text-align: left">
+        <h1>장용민 (Yongmin Jang) — Developer</h1>
+        <p>
+          이 포트폴리오는 자바스크립트로 렌더링됩니다. 브라우저에서 자바스크립트를
+          활성화하거나, 아래 경로로 연락해 주세요.
+        </p>
+        <ul>
+          <li>Email: <a href="mailto:code.min657@gmail.com">code.min657@gmail.com</a></li>
+          <li>GitHub: <a href="https://github.com/poiuy4004">github.com/poiuy4004</a></li>
+          <li>
+            Resume:
+            <a
+              href="https://yielding-brick-c96.notion.site/_Developer-aba8940403614692b42001035017a628"
+              >Notion Resume</a
+            >
+          </li>
+        </ul>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
